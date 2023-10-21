@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 
-const DataTable = ({ rows, columns, selectedRows, setSelectedRows }) => {
+const DataTable = ({
+  rows,
+  columns,
+  selectedRows,
+  setSelectedRows,
+  allowCheckboxSelection = true
+}) => {
   console.log(selectedRows);
 
   const handleRowSelection = (e) => {
@@ -23,7 +29,7 @@ const DataTable = ({ rows, columns, selectedRows, setSelectedRows }) => {
         selectionModel={selectedRows}
         onRowClick={handleRowSelection}
         onRowSelectionModelChange={handleRowSelection}
-        checkboxSelection
+        checkboxSelection={allowCheckboxSelection}
       />
     </div>
   );

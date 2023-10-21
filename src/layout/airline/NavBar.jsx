@@ -12,7 +12,7 @@ const NavItem = ({ title, url, exact = false }) => {
   return (
     <Link
       className={`${
-        isActive ? 'text-indigo-400 font-semibold' : ''
+        isActive ? 'font-semibold' : ''
       } text-opacity-90 transition duration-200 uppercase`}
       to={url}>
       {title}
@@ -43,7 +43,7 @@ function NavBar() {
           <div className="flex flex-1 space-x-10">
             <NavItem title="Home" url="/" exact />
             <NavItem title="Offers" url="/airline-offers" />
-            <NavItem title="Bookings" url="/airline-bookings" />
+            {/*<NavItem title="Bookings" url="/airline-bookings" />*/}
             <NavItem title="Profile" url="/airline-profile" />
           </div>
           <p
@@ -107,14 +107,13 @@ function NavBar() {
                 } text-opacity-90 transition duration-200 uppercase text-2xl hover:font-semibold pt-2`}>
                 Bookings
               </Link>
-              <Link
-                to="/airline-profile"
-                className={`${
-                  location.pathname === '/' ? 'text-indigo-400 font-bold' : ''
-                } text-opacity-90 transition duration-200 uppercase text-2xl hover:font-semibold pt-2`}>
-                {' '}
-                Bookings
-              </Link>
+              {/*<Link*/}
+              {/*  to="/airline-profile"*/}
+              {/*  className={`${*/}
+              {/*    location.pathname === '/' ? 'text-indigo-400 font-bold' : ''*/}
+              {/*  } text-opacity-90 transition duration-200 uppercase text-2xl hover:font-semibold pt-2`}>*/}
+              {/*  Bookings*/}
+              {/*</Link>*/}
               <p
                 className="text-red-400 hover:text-white block px-3 pb-1 rounded-md text-2xl font-medium cursor-pointer pt-4"
                 onClick={() => dispatch(logout())}>
