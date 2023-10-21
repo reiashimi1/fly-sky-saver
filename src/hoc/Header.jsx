@@ -31,13 +31,13 @@ const Header = () => {
           <div onClick={() => navigate('/offers')}>Offers</div>
           <div onClick={() => navigate('/bookings')}>Bookings</div>
           <div onClick={() => navigate('/profile')}>My profile</div>
+          <PrimaryButton
+            to="/login"
+            className="flex-1 align-right"
+            label="SIGN OUT"
+            onClick={() => dispatch(logout())}
+          />
         </div>
-        <PrimaryButton
-          to="/login"
-          className="flex-1 align-right"
-          label="SIGN OUT"
-          onClick={() => dispatch(logout())}
-        />
       </nav>
     </div>
   );
