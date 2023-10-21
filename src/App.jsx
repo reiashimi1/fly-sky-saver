@@ -6,7 +6,8 @@ import Button from '@mui/material/Button';
 import DataTable from './core/DataTable.jsx';
 import { API_URL } from './utils/API_URL.js';
 import Roulette from './components/Roulette';
-import AirAlbania from "./assets/images/AirAlbania.svg";
+import AirAlbania from './assets/images/AirAlbania.svg';
+import Layout from './layout/user/Layout.jsx';
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 70 },
@@ -71,7 +72,7 @@ function App() {
   const dispatch = useDispatch();
 
   return (
-    <div>
+    <Layout>
       <div>
         <div className="text-red-400">
           <Button
@@ -89,7 +90,7 @@ function App() {
           Decrement
         </button>
         <div className="w-full">
-          <img src={AirAlbania} alt="AirAlbania"/>
+          <img src={AirAlbania} alt="AirAlbania" />
         </div>
         <button
           aria-label="Decrement value"
@@ -99,7 +100,7 @@ function App() {
       </div>
       <DataTable rows={rows} columns={columns} />
       <Roulette />
-    </div>
+    </Layout>
   );
 }
 
