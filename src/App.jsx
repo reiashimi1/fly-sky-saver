@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import DataTable from './core/DataTable.jsx';
 import { API_URL } from './utils/API_URL.js';
 import Roulette from './components/Roulette';
-import AirAlbania from "./assets/AirAlbania.svg";
+import AirAlbania from "./assets/images/AirAlbania.svg";
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 70 },

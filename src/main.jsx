@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
+import "./assets/css/style.css";
 import AppRoutes from "./router/index.jsx";
 import { ToastContainer, toast } from "react-toastify";
 import { Provider } from "react-redux";
