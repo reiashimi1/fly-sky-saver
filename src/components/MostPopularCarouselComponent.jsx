@@ -26,7 +26,10 @@ const MostPopularCarouselComponent = () => {
   };
 
   return (
-    <div style={{ width: '600px' }}>
+    <div style={{ height: '200px', width: '650px' }}>
+      <h1 className="font-bold text-xxl text-left" style={{ color: 'purple' }}>
+        MOST POPULAR
+      </h1>
       <Carousel
         responsive={responsive}
         autoPlay={true}
