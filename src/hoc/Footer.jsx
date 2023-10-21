@@ -7,6 +7,7 @@ const Footer = (props) => {
         bottom: '0',
         position: 'fixed',
         width: '100%',
+        position: 'relative',
         marginTop: '10px'
       }}>
       <div className="px-5 md:px-15 ">
