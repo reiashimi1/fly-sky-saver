@@ -37,7 +37,7 @@ const BlankModal = ({
           &#8203;
         </span>
         <div
-          className={`inline-block self-center align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-md sm:w-full`}>
+          className={`inline-block self-center align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-xl sm:w-full`}>
           <div className={`bg-${bgColor} px-4 pt-5 pb-4 sm:p-6 sm:pb-4`}>
             <div className="sm:flex sm:items-start">
               {icon && (

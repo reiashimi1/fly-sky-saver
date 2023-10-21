@@ -4,11 +4,11 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import { countries } from '../utils/data/countries.js';
 
-export default function CountrySelect({country, setCountry}) {
+export default function CountrySelect({ country, setCountry, placeholder }) {
   return (
     <Autocomplete
-        value={country}
-        onChange={(e,value) => setCountry(value)}
+      value={country}
+      onChange={(e, value) => setCountry(value)}
       id="country-select"
       options={countries}
       autoHighlight
@@ -28,7 +28,7 @@ export default function CountrySelect({country, setCountry}) {
       renderInput={(params) => (
         <TextField
           {...params}
-          label="Choose a country"
+          label={placeholder}
           inputProps={{
             ...params.inputProps,
             autoComplete: 'new-password'

@@ -23,7 +23,7 @@ const SelectInput = ({
       lineHeight: "20px",
       borderRadius: "7px",
       borderColor: "#E5E7EB",
-      padding: "2px",
+      padding: "5px",
       minWidth,
     }),
     menu: (provided, state) => ({

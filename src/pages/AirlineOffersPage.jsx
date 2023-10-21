@@ -10,64 +10,131 @@ import DeleteButton from '../core/DeleteButton.jsx';
 import EditButton from '../core/EditButton.jsx';
 import AddButton from '../core/AddButton.jsx';
 import AddOffer from '../components/airlineOffers/AddOffer.jsx';
+import EditOffer from '../components/airlineOffers/EditOffer.jsx';
+import CancelOffer from '../components/airlineOffers/CancelOffer.jsx';
 
 const columns = [
   {
-    field: 'firstName',
-    headerName: 'First name',
-    width: 200
-  },
-  { field: 'lastName', headerName: 'Last name', width: 200 },
-  {
-    field: 'age',
-    headerName: 'Age',
-    type: 'number',
+    field: 'title',
+    headerName: 'Title',
     width: 150
   },
   {
-    field: 'fullName',
-    headerName: 'Full name',
-    description: 'This column has a value getter and is not sortable.',
-    sortable: false,
-    width: 200,
-    valueGetter: (params) => `${params.row.firstName || ''} ${params.row.lastName || ''}`
+    field: 'Type',
+    headerName: 'Type',
+    width: 150,
+    valueGetter: (params) => params.row.type.toUpperCase()
+  },
+  {
+    field: 'amount',
+    headerName: 'Amount',
+    type: 'number',
+    width: 100
+  },
+  {
+    field: 'startDate',
+    headerName: 'Start date',
+    width: 100
+  },
+  {
+    field: 'endDate',
+    headerName: 'End date',
+    width: 100
+  },
+  {
+    field: 'description',
+    headerName: 'Description',
+    width: 400
   }
 ];
 
 const rows = [
-  { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
+  {
+    id: 1,
+    title: 'Snow',
+    type: 'DISCOUNT',
+    amount: 35,
+    startDate: '2022-10-10',
+    endDate: '2022-10-10',
+    description: 'Lorem Ipsum This is a description'
+  },
   {
     id: 2,
-    lastName: 'Lannister',
-    firstName: 'Cersei',
-    age: 42
+    title: 'Snow',
+    type: 'percentage',
+    amount: 35,
+    startDate: '2022-10-10',
+    endDate: '2022-10-10',
+    description: 'Lorem Ipsum This is a description'
   },
-  { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
+  {
+    id: 3,
+    title: 'Snow',
+    type: 'fixedAmount',
+    amount: 35,
+    startDate: '2022-10-10',
+    endDate: '2022-10-10',
+    description: 'Lorem Ipsum This is a description. Lorem Ipsum This is a description'
+  },
   {
     id: 4,
-    lastName: 'Stark',
-    firstName: 'Arya',
-    age: 16
+    title: 'Snow',
+    type: 'fixedAmount',
+    amount: 35,
+    startDate: '2022-10-10',
+    endDate: '2022-10-10',
+    description: 'Lorem Ipsum This is a description'
   },
-  { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
+  {
+    id: 5,
+    title: 'Snow',
+    type: 'percentage',
+    amount: 35,
+    startDate: '2022-10-10',
+    endDate: '2022-10-10',
+    description: 'Lorem Ipsum This is a description'
+  },
   {
     id: 6,
-    lastName: 'Melisandre',
-    firstName: null,
-    age: 150
+    title: 'Snow',
+    type: 'fixedAmount',
+    amount: 35,
+    startDate: '2022-10-10',
+    endDate: '2022-10-10',
+    description: 'Lorem Ipsum This is a description'
   },
-  { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
+  {
+    id: 7,
+    title: 'Snow',
+    type: 'fixedAmount',
+    amount: 35,
+    startDate: '2022-10-10',
+    endDate: '2022-10-10',
+    description: 'Lorem Ipsum This is a description'
+  },
   {
     id: 8,
-    lastName: 'Frances',
-    firstName: 'Rossini',
-    age: 36
+    title: 'Snow',
+    type: 'percentage',
+    amount: 35,
+    startDate: '2022-10-10',
+    endDate: '2022-10-10',
+    description: 'Lorem Ipsum This is a description'
   },
-  { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 }
+  {
+    id: 9,
+    title: 'Snow',
+    type: 'percentage',
+    amount: 35,
+    startDate: '2022-10-10',
+    endDate: '2022-10-10',
+    description: 'Lorem Ipsum This is a description'
+  }
 ];
 
 const AirlineOffersPage = () => {
   const [offers, setOffers] = useState(rows);
+  const [selectedRows, setSelectedRows] = useState([]);
   const [updated, setUpdated] = useState(0);
   const [addModal, setAddModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
@@ -93,13 +160,18 @@ const AirlineOffersPage = () => {
 
   return (
     <Layout>
-      <div className="mb-8 p-5">
+      <div className="p-5">
+        <div className="text-xl font-bold uppercase mb-3 pl-3">All Offers</div>
         <div className="bg-white p-8">
-          <div className="flex justify-between mb-3">
-            <div className="text-xl font-bold uppercase mb-3">All Offers</div>
+          <div className="flex justify-end mb-3">
             <AddButton label="ADD" onClick={() => setAddModal(true)} />
           </div>
-          <DataTable rows={rows} columns={columns} />
+          <DataTable
+            rows={rows}
+            columns={columns}
+            selectedRows={selectedRows}
+            setSelectedRows={setSelectedRows}
+          />
           <div className="mt-5 flex justify-end space-x-5 items-end">
             <EditButton label="EDIT" onClick={() => setEditModal(true)} />
             <DeleteButton label="REMOVE" onClick={() => setRemoveModal(true)} />
@@ -107,6 +179,21 @@ const AirlineOffersPage = () => {
         </div>
       </div>
       {addModal && <AddOffer openModal={addModal} setOpenModal={setAddModal} />}
+      {editModal && selectedRows.length > 0 && (
+        <EditOffer
+          openModal={editModal}
+          setOpenModal={setEditModal}
+          selectedOffer={selectedRows[0]}
+          onSuccess={() => setUpdated((prevState) => prevState++)}
+        />
+      )}
+      {removeModal && selectedRows.length > 0 && (
+        <CancelOffer
+          setOpenModal={setRemoveModal}
+          onSuccess={() => setUpdated((prevState) => prevState++)}
+          selectedOffer={selectedRows[0]}
+        />
+      )}
     </Layout>
   );
 };

@@ -1,10 +1,10 @@
 export const offerTypes = [
     {
-        label: "Percentage",
-        value: 'percentage'
+        label: "Discount",
+        value: 'DISCOUNT'
     },
-    {
-        label: "Fixed Amount",
-        value: 'fixedAmount'
-    }
+    // {
+    //     label: "Fixed Amount",
+    //     value: 'fixedAmount'
+    // }
 ]

@@ -1,6 +1,6 @@
 import React from 'react';
 import DeleteButton from './DeleteButton';
-import { X } from 'tabler-icons-react';
+import { XIcon } from '@heroicons/react/solid';
 import PrimaryButton from './PrimaryButton';
 
 
@@ -31,8 +31,8 @@ const CancelModal = ({
         <div className="inline-block self-center align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
           <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
             <div className="sm:flex sm:items-start">
-              <div className="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
-              <X
+              <div className="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-700 sm:mx-0 sm:h-10 sm:w-10">
+              <XIcon
 					className="w-7 h-7 cursor-pointer text-white"
 					onClick={() => setOpenModal(false)}
 				/>
@@ -53,13 +53,7 @@ const CancelModal = ({
                 setOpenModal(false);
               }}
               className="mx-2"
-            />
-            <DeleteButton
-              label='Back'
-              onClick={() => setOpenModal(false)}
-              isLoading={isLoading}
-            />
-          </div>
+            /></div>
         </div>
       </div>
     </div>

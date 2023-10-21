@@ -1,27 +1,34 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import BlankModal from '../../core/BlankModal.jsx';
 import SelectInput from '../../core/SelectInput.jsx';
 import { offerTypes } from '../../utils/data/offerTypes.js';
 import Input from '../../core/Input.jsx';
 import CountrySelect from '../../core/CountrySelect.jsx';
 
-const AddOffer = ({ openModal, setOpenModal, onSuccess }) => {
+const EditOffer = ({ openModal, setOpenModal, onSuccess, selectedOffer }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [type, setType] = useState('');
   const [amount, setAmount] = useState(0);
-  const [startDate, setStartDate] = useState(undefined);
-  const [endDate, setEndDate] = useState(undefined);
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
   // const [origin, setOrigin] = useState(null);
   // const [destination, setDestination] = useState(null);
 
-    const error = false;
+  const error = false;
+
+  useEffect(() => {
+    setTitle(selectedOffer?.title);
+    setDescription(selectedOffer?.description);
+    setStartDate(selectedOffer?.startDate);
+    setEndDate(selectedOffer?.endDate);
+    const selectedType = offerTypes.find((offerType) => offerType.value === selectedOffer?.type);
+    setType(selectedType);
+    setAmount(selectedOffer?.amount);
+  }, [selectedOffer]);
 
   return (
-    <BlankModal
-      title="Add new offer"
-      setOpenModal={setOpenModal}
-      onClose={() => setOpenModal(false)}>
+    <BlankModal title="Edit offer" setOpenModal={setOpenModal} onClose={() => setOpenModal(false)}>
       <div className="mt-5">
         <div className="w-full mt-1">
           <div>Title</div>
@@ -37,7 +44,7 @@ const AddOffer = ({ openModal, setOpenModal, onSuccess }) => {
           <textarea
             className={`${
               error ? 'focus:ring-red-100 border-red-300' : ''
-          } mr-5 appearance-none relative block px-4 py-2 w-full 
+            } mr-5 appearance-none relative block px-4 py-2 w-full 
                  placeholder-gray-500 placeholder:text-sm border text-gray-900 h-12 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-100 sm:text-sm`}
             placeholder="Enter description"
             value={description}
@@ -97,4 +104,4 @@ const AddOffer = ({ openModal, setOpenModal, onSuccess }) => {
   );
 };
 
-export default AddOffer;
+export default EditOffer;

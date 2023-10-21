@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 
-const DataTable = ({ rows, columns, selectedRow, onSelect }) => {
+const DataTable = ({ rows, columns, selectedRows, setSelectedRows }) => {
+  console.log(selectedRows);
 
   const handleRowSelection = (e) => {
-    console.log(e);
-    onSelect(e);
+    const myRows = rows.filter((row) => e.includes(row.id));
+    setSelectedRows(myRows);
   };
 
   return (
@@ -19,9 +20,10 @@ const DataTable = ({ rows, columns, selectedRow, onSelect }) => {
           }
         }}
         pageSizeOptions={[5, 10]}
+        selectionModel={selectedRows}
+        onRowClick={handleRowSelection}
+        onRowSelectionModelChange={handleRowSelection}
         checkboxSelection
-        selectionModel={selectedRow}
-        onSelectionModelChange={handleRowSelection}
       />
     </div>
   );
