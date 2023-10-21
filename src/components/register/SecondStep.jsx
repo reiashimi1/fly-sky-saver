@@ -12,7 +12,7 @@ const FirstStep = () => {
   const [passport, setPassport] = useState('');
   const [country, setCountry] = useState();
   const [appUser, setAppUser] = useState('user');
-  const [issueDate, expiryDate]
+  // const [issueDate, expiryDate]
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -27,7 +27,7 @@ const FirstStep = () => {
     })
       .then((res) => {
         navigate('/login');
-        onSuccess();
+        // onSuccess();
       })
       .catch((error) => {
         console.error(error);

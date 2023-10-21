@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { login } from '../redux/authSlice';
 import { fetchUser } from '../redux/userSlice';
 import FLY from '../assets/images/fly3.png';
+import AuthAPI from "../utils/AuthAPI.js";
 
 const LoginAirlinePage = () => {
   const [email, setEmail] = useState();
@@ -25,7 +26,7 @@ const LoginAirlinePage = () => {
     // 	return;
     // } else {
     dispatch(showSpinner('Loading data...'));
-    API.post('/auth/signin', {
+    AuthAPI.post('/auth/signin', {
       username: email,
       password
     })

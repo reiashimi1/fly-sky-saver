@@ -7,6 +7,7 @@ import API from '../utils/API';
 import Input from '../core/Input';
 import { useNavigate } from 'react-router-dom';
 import FLY from "../assets/images/fly3.png";
+import AuthAPI from "../utils/AuthAPI.js";
 
 const RegisterPage = () => {
   const [email, setEmail] = useState('');
@@ -22,7 +23,7 @@ const RegisterPage = () => {
     e.preventDefault();
     const role = appUser.toUpperCase().replace(' ', '_');
     // dispatch(showSpinner('Creating your account...'));
-    API.post('/auth/signup', {
+    AuthAPI.post('/auth/signup', {
       username: email,
       password,
       role
