@@ -115,7 +115,7 @@ const RegisterAirlinePage = () => {
               </div>
               <p
                 className="cursor-pointer text-left my-3 text-sm text-indigo-600"
-                onClick={() => navigate('/login-airline')}>
+                onClick={() => navigate('/login')}>
                 Login here!
               </p>
             </div>
