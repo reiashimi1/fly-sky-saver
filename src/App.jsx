@@ -8,6 +8,7 @@ import { API_URL } from './utils/API_URL.js';
 import Roulette from './components/Roulette';
 import AirAlbania from './assets/images/AirAlbania.svg';
 import Layout from './layout/user/Layout.jsx';
+import DescriptiveCard from './components/DescriptiveCard';
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 70 },
@@ -73,32 +74,10 @@ function App() {
 
   return (
     <Layout>
-      <div>
-        <div className="text-red-400">
-          <Button
-            aria-label="Increment value"
-            color="inherit"
-            onClick={() => dispatch(increment())}>
-            Increment
-          </Button>
-          {/*<Alert severity="success" color="info">*/}
-          {/*  This is a success alert — check it out!*/}
-          {/*</Alert>*/}
-        </div>
-        <span>{count}</span>
-        <button aria-label="Decrement value" onClick={() => dispatch(decrement())}>
-          Decrement
-        </button>
-        <div className="w-full">
-          <img src={AirAlbania} alt="AirAlbania" />
-        </div>
-        <button
-          aria-label="Decrement value"
-          onClick={() => dispatch(showSpinner('Loading data...'))}>
-          show spinner
-        </button>
+      <div className="flex align-center justify-center">
+        <DescriptiveCard />
       </div>
-      <DataTable rows={rows} columns={columns} />
+      {/* <DataTable rows={rows} columns={columns} /> */}
       <Roulette />
     </Layout>
   );
