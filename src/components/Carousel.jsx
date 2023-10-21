@@ -21,6 +21,7 @@ const responsive = {
   }
 };
 
+
 const CarouselComponent = () => {
   return (
     <div className="parent">
