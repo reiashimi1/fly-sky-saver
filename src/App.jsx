@@ -80,6 +80,9 @@ function App() {
             onClick={() => dispatch(increment())}>
             Increment
           </Button>
+          {/*<Alert severity="success" color="info">*/}
+          {/*  This is a success alert — check it out!*/}
+          {/*</Alert>*/}
         </div>
         <span>{count}</span>
         <button aria-label="Decrement value" onClick={() => dispatch(decrement())}>
