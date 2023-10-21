@@ -4,13 +4,44 @@
     position: absolute;
     left: 0;
     top: 0;
-    width: 100vw;
-    height: 100vh;
-    opacity: 0.2;
-    background-repeat: no-repeat;
-    background-position: 0 10%;
-    background-size: cover;
-    background-image: url("../images/background.jpg");
+}
+
+
+.slider {
+    margin:0 20px;
+    overflow:"hidden";
+    padding:2rem 0;
+  }
+  
+  .slider img {
+    width: 100%;
+    border-radius:10px;
+  }
+  
+  .react-multi-carousel-list {
+  padding: 0rem 0 2rem 0;
+  }
+  
+  .custom-dot-list-style button{
+  border: none;
+  background: gray;
+  }
+  .react-multi-carousel-dot.react-multi-carousel-dot--active button{
+  background: gray !important;
+  }
+
+.image-item {
+    padding: 20px 0 20px 20px;
+  }
+  
+.react-pdf__Page__canvas {
+    max-width: 100%;
+    height: auto !important;
+}
+
+.react-pdf__Page__textContent {
+    max-width: 100%;
+    height: auto !important;
 }
 
 .ReactCollapse--collapse {
