@@ -1,4 +1,5 @@
 import descriptive from '../assets/images/descriptive.jpg';
+import PrimaryButton from '../core/PrimaryButton';
 const DescriptiveCard = () => {
   return (
     <div
@@ -17,6 +18,12 @@ const DescriptiveCard = () => {
         <h3 style={{ fontStyle: 'italic' }} className="px-15 text-center ">
           ✈️ Try us, you might be lucky and win! ✨
         </h3>
+        <PrimaryButton
+          to="/login"
+          className="mx-auto pt-10"
+          label="SIGN IN"
+          onClick={() => dispatch(logout())}
+        />
       </div>
     </div>
   );
