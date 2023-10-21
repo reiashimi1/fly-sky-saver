@@ -2,13 +2,13 @@ import { FormEventHandler, useState } from 'react';
 import Input from '../core/Input';
 import PrimaryButton from '../core/PrimaryButton';
 import PasswordInput from '../core/PasswordInput';
-import API from '../utils/API';
 import { useDispatch, useSelector } from 'react-redux';
 import { hideSpinner, showSpinner } from '../redux/spinnerSlice';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../redux/authSlice';
 import { fetchUser } from '../redux/userSlice';
 import FLY from '../assets/images/fly3.png';
+import AuthAPI from "../utils/AuthAPI.js";
 
 const LoginPage = () => {
   const [email, setEmail] = useState();
@@ -25,7 +25,7 @@ const LoginPage = () => {
     // 	return;
     // } else {
     dispatch(showSpinner('Loading data...'));
-    API.post('/auth/signin', {
+    AuthAPI.post('/auth/signin', {
       username: email,
       password
     })

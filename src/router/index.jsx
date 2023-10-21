@@ -11,6 +11,7 @@ import TestingCards from "../pages/TestingCards";
 import LoginAirlinePage from "../pages/LoginAirlinePage.jsx";
 import RegisterAirlinePage from "../pages/RegisterAirlinePage.jsx";
 import AirlineHomePage from "../pages/AirlineHomePage.jsx";
+import AirlineOffersPage from "../pages/AirlineOffersPage.jsx";
 
 const AppRoutes = () => {
   return (
@@ -24,6 +25,7 @@ const AppRoutes = () => {
         <Route path="/login-airline" element={<LoginAirlinePage />} />
         <Route path="/register-airline" element={<RegisterAirlinePage />} />
         <Route path="/airline-home" element={<AirlineHomePage />} />
+        <Route path="/airline-offers" element={<AirlineOffersPage />} />
       </Routes>
     </Router>
   );
