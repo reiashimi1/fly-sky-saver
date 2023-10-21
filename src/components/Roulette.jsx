@@ -49,7 +49,7 @@ const Roulette = () => {
   };
 
   return (
-    <>
+    <div>
       {loadConfetti && <Confetti width={screenSize.width} height={screenSize.height} />}
       <Wheel
         outerBorderColor="gray"
@@ -68,7 +68,7 @@ const Roulette = () => {
       />
       {winningOption && <p> winning option is: {prizeNumber}</p>}
       <button onClick={handleSpinClick}>SPIN</button>
-    </>
+    </div>
   );
 };
 

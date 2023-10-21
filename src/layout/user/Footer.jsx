@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <div className="absolute bottom-0 left-0 right-0 px-5 xl:px-15 bg-transparent">
+    <div className="fixed bottom-0 left-0 right-0 px-5 xl:px-15 bg-transparent">
       <div className="flex flex-col lg:flex-row justify-start items-start border-t-0.5 border-opacity-30 p-5 lg:py-10 xl:p-15 lg:text-white text-gray-400 text-opacity-90">
         <Link to="/">{/* <img className="h-8 md:h-14" alt="logo" src={whiteLogo}/> */}</Link>
         <div className="flex flex-1 lg:justify-end 3xl:justify-start 3xl:ml-120 flex-wrap sm:flex-nowrap text-xs md:text-sm lg:text-base">

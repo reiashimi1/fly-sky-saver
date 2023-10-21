@@ -21,16 +21,24 @@ const Header = () => {
         position: 'relative',
         zIndex: '1'
       }}>
-      <nav className="flex justify-between items-center bg-white p-3 text-lg">
+      <nav className="flex justify-content-between items-center bg-white p-3 text-lg">
         <div className="flex flex-1 h-full w-full">
           {<img src={fly3} className="w-14 h-12" alt="logo" />}
         </div>
 
-        <div className="flex flex-1 space-x-10">
-          <div onClick={() => navigate('/home')}>Home</div>
-          <div onClick={() => navigate('/offers')}>Offers</div>
-          <div onClick={() => navigate('/bookings')}>Bookings</div>
-          <div onClick={() => navigate('/profile')}>My profile</div>
+        <div className="flex flex-1 space-x-5">
+          <div className="cursor-pointer" onClick={() => navigate('/')}>
+            Home
+          </div>
+          <div className="cursor-pointer" onClick={() => navigate('/offers')}>
+            Offers
+          </div>
+          <div className="cursor-pointer" onClick={() => navigate('/bookings')}>
+            Bookings
+          </div>
+          <div className="cursor-pointer" onClick={() => navigate('/profile')}>
+            My profile
+          </div>
           <PrimaryButton
             to="/login"
             className="flex-1 align-right"
