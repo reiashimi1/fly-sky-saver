@@ -7,8 +7,8 @@ const Layout = ({ children }) => {
   return (
     <div id="container">
       <div className="absolute h-full w-full shadow-inner bg-slate-100">
-        <Header />
-        <div className="relative mb-10 mt-10">
+        <NavBar />
+        <div className="relative my-10 pt-10">
           {children}
           <Footer />
         </div>

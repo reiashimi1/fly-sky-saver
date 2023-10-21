@@ -161,7 +161,7 @@ const AirlineOffersPage = () => {
   return (
     <Layout>
       <div className="p-5">
-        <div className="text-xl font-bold uppercase mb-3 pl-3">All Offers</div>
+        <div className="text-xl font-bold uppercase my-3 pl-3">All Offers</div>
         <div className="bg-white p-8">
           <div className="flex justify-end mb-3">
             <AddButton label="ADD" onClick={() => setAddModal(true)} />
@@ -172,6 +172,13 @@ const AirlineOffersPage = () => {
             selectedRows={selectedRows}
             setSelectedRows={setSelectedRows}
           />
+          <DataTable
+              rows={rows}
+              columns={columns}
+              selectedRows={selectedRows}
+              setSelectedRows={setSelectedRows}
+          />
+
           <div className="mt-5 flex justify-end space-x-5 items-end">
             <EditButton label="EDIT" onClick={() => setEditModal(true)} />
             <DeleteButton label="REMOVE" onClick={() => setRemoveModal(true)} />
