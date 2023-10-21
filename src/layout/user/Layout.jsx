@@ -6,9 +6,9 @@ import Header from '../../hoc/Header.jsx';
 const Layout = ({ children }) => {
   return (
     <div id="container" className="container">
-      <div className="absolute h-full w-full shadow-inner">
+      <div className="absolute min-h-full w-full shadow-inner  bg-slate-100">
         <Header />
-        <div className="relative mb-10 mt-10">
+        <div className="relative">
           {children}
           <Footer />
         </div>

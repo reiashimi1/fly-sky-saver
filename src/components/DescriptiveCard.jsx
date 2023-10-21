@@ -2,7 +2,7 @@ import descriptive from '../assets/images/descriptive.jpg';
 const DescriptiveCard = () => {
   return (
     <div
-      className="flex border-2 rounded-lg "
+      className="flex border-2 mx-auto rounded-lg mt-10"
       style={{ height: '400px', width: '1000px', borderColor: 'lightblue' }}>
       <img src={descriptive} className="object-cover rounded-lg h-full f" />
       <div
