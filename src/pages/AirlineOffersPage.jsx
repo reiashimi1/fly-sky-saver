@@ -161,7 +161,7 @@ const AirlineOffersPage = () => {
   return (
     <Layout>
       <div className="p-5">
-        <div className="text-xl font-bold uppercase my-3 pl-3">All Offers</div>
+        <div className="text-xl font-bold uppercase mb-3 pl-3">All Offers</div>
         <div className="bg-white p-8">
           <div className="flex justify-end mb-3">
             <AddButton label="ADD" onClick={() => setAddModal(true)} />

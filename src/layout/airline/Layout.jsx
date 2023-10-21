@@ -8,7 +8,7 @@ const Layout = ({ children }) => {
     <div id="container">
       <div className="absolute h-full w-full shadow-inner bg-slate-100">
         <NavBar />
-        <div className="relative my-10 pt-10">
+        <div className="relative my-10">
           {children}
           <Footer />
         </div>

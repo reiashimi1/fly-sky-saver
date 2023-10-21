@@ -1,5 +1,4 @@
 import React from 'react';
-import NavBar from './NavBar.jsx';
 import Footer from '../../hoc/Footer.jsx';
 import Header from '../../hoc/Header.jsx';
 
