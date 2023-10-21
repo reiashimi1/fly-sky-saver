@@ -7,7 +7,7 @@ const DescriptiveCard = () => {
       <img src={descriptive} className="object-cover rounded-lg h-full f" />
       <div
         className="flex flex-col justify-center align-center"
-        style={{ background: '#c3eeff', border: '#46a1be' }}>
+        style={{ background: 'rgb(237 226 251)', border: '#46a1be' }}>
         <h2 style={{ color: '#0a2ca8' }} className="font-bold px-10 font-mono text-lg">
           From iconic landmarks to hidden gems, embark on a journey of discovery with our curated
           selection of featured destinations.{' '}

@@ -6,7 +6,6 @@ import useActiveMenuItem from '../../hooks/useActiveMenuItem.js';
 import { Transition } from '@headlessui/react';
 import { logout } from '../../redux/authSlice.js';
 import { useDispatch } from 'react-redux';
-import PrimaryButton from '../../core/PrimaryButton.jsx';
 
 const NavItem = ({ title, url, exact = false }) => {
   const isActive = useActiveMenuItem(url, exact);
