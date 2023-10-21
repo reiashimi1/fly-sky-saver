@@ -3,52 +3,59 @@ import PrimaryButton from '../core/PrimaryButton';
 import React, { useState, FormEventHandler } from 'react';
 import { useDispatch } from 'react-redux';
 import { showSpinner, hideSpinner } from '../redux/spinnerSlice';
-import API from '../utils/API';
 import Input from '../core/Input';
 import { useNavigate } from 'react-router-dom';
-import FLY from "../assets/images/fly3.png";
-import AuthAPI from "../utils/AuthAPI.js";
+import FLY from '../assets/images/fly3.png';
+import AuthAPI from '../utils/AuthAPI.js';
+import useValidate from '../hooks/useValidate.js';
+import registerUserValidator from '../utils/validators/RegisterUserValidator.js';
+import { Alert } from '@mui/material';
 
 const RegisterPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [appUser, setAppUser] = useState('user');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [nid, setNid] = useState('');
+  const [passportNumber, setPassportNumber] = useState('');
+  const [birthday, setBirthday] = useState();
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const { clearError, getError, validateErrors } = useValidate();
+
   const onSubmitForm = (e) => {
     e.preventDefault();
-    const role = appUser.toUpperCase().replace(' ', '_');
-    // dispatch(showSpinner('Creating your account...'));
-    AuthAPI.post('/auth/signup', {
-      username: email,
+    const errors = validateErrors(
+      { email, password, confirmPassword, birthday, passportNumber },
+      registerUserValidator
+    );
+    if (errors) return;
+    dispatch(showSpinner('Creating your account...'));
+    const role = 'user';
+    AuthAPI.post('/auth/register', {
+      email,
       password,
-      role
+      role,
+      birthday,
+      passportNumber
     })
-      .then((res) => {
-        console.log(res.data.accessToken);
+      .then(() => {
+        setSuccess(true);
+        navigate('/login');
       })
       .catch((error) => {
         console.error(error);
+        setError(true);
       })
       .finally(() => dispatch(hideSpinner()));
-  };
-
-  const onConfirmPassword = (value) => {
-    console.log(value);
-    console.log(value === password);
-    if (value === password) {
-      setConfirmPassword(value);
-    }
   };
 
   return (
     <div className="login-bg">
       <div
-        className="flex items-center justify-center h-screen w-2/5 "
+        className="flex items-center justify-center h-screen sm:w-2/5 w-4/5"
         style={{
           position: 'absolute',
           top: '50%',
@@ -59,28 +66,47 @@ const RegisterPage = () => {
           className="flex w-full items-center justify-center bg-white p-10 rounded-lg shadow-md rounded-lg"
           onSubmit={onSubmitForm}>
           <div className="w-full">
-              <div className="flex justify-center">
-                  <img src={FLY} alt="FLY" className="w-2/5" />
-              </div>
-            <h3 className="text-center mb-2 font-lg text-gray-700 font-semibold">Register as {appUser}</h3>
+            <div className="flex justify-center">
+              <img src={FLY} alt="FLY" className="w-2/5" />
+            </div>
+            <h3 className="text-center mb-2 font-lg text-gray-700 font-semibold">
+              Register as user
+            </h3>
             <div className="w-full mt-3">
               <div>Email</div>
               <Input
                 className="w-full mb-4 "
                 value={email}
                 type="email"
-                placeholder="Enter username"
-                handleInputChange={setEmail}
+                placeholder="Enter email"
+                handleInputChange={(value) => clearError('email', value, setEmail)}
+                error={getError('email')}
               />
             </div>
-            <div className="w-full mt-3">
-              <div>Passport ID</div>
-              <Input
-                className="w-full mb-4 "
-                value={nid}
-                placeholder="Enter passport number"
-                handleInputChange={setNid}
-              />
+            <div className="flex justify-between mt-3 space-x-4">
+              <div className="w-full">
+                <div>Passport ID</div>
+                <Input
+                  className="w-full mb-4 "
+                  value={passportNumber}
+                  placeholder="Enter passport number"
+                  handleInputChange={(value) =>
+                    clearError('passportNumber', value, setPassportNumber)
+                  }
+                  error={getError('passportNumber')}
+                />
+              </div>
+              <div className="w-full">
+                <div>Birthday</div>
+                <Input
+                  className="w-full mb-4 "
+                  value={birthday}
+                  placeholder="Enter birthday"
+                  type="date"
+                  handleInputChange={(value) => clearError('birthday', value, setBirthday)}
+                  error={getError('birthday')}
+                />
+              </div>
             </div>
             <div className="mb-3">
               <div>Password</div>
@@ -88,7 +114,8 @@ const RegisterPage = () => {
                 className="w-full mb-4 rounded"
                 placeholder="Enter password"
                 value={password}
-                handleInputChange={setPassword}
+                handleInputChange={(value) => clearError('password', value, setPassword)}
+                error={getError('password')}
               />
             </div>
             <div className="mb-3">
@@ -97,7 +124,10 @@ const RegisterPage = () => {
                 className="w-full mb-4 rounded"
                 placeholder="Confirm password"
                 value={confirmPassword}
-                handleInputChange={onConfirmPassword}
+                handleInputChange={(value) =>
+                  clearError('confirmPassword', value, setConfirmPassword)
+                }
+                error={getError('confirmPassword')}
               />
             </div>
             <div className="flex w-full mt-4">
@@ -118,6 +148,8 @@ const RegisterPage = () => {
           </div>
         </form>
       </div>
+      {success && <Alert severity="success">User registerd successfully</Alert>}
+      {error && <Alert severity="error">Something went wrong</Alert>}
     </div>
   );
 };
