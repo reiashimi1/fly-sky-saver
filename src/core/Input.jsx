@@ -24,7 +24,7 @@ const Input = (props) => {
                  placeholder-gray-500 placeholder:text-sm border text-gray-900 h-12 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-100 sm:text-sm`}
 				onChange={(e) => props.handleInputChange?.(e.target.value)}
 				onClick={props.onFocus}
-				type={props.type}
+				type={props.type || "text"}
 				placeholder={props.placeholder}
 				aria-label={props.label}
 				onBlur={props.onBlur}

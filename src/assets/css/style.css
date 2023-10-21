@@ -1,25 +1,16 @@
-body {
-    background-color: #000026;
-}
-
-#react-qrcode-logo {
-    border-radius: .5rem;
-}
-
-.hidden-pdf {
+.login-bg::before {
+    content: ' ';
+    display: block;
     position: absolute;
-    left: -1000px;
+    left: 0;
     top: 0;
-}
-
-.react-pdf__Page__canvas {
-    max-width: 100%;
-    height: auto !important;
-}
-
-.react-pdf__Page__textContent {
-    max-width: 100%;
-    height: auto !important;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0.2;
+    background-repeat: no-repeat;
+    background-position: 0 10%;
+    background-size: cover;
+    background-image: url("../images/background.jpg");
 }
 
 .ReactCollapse--collapse {

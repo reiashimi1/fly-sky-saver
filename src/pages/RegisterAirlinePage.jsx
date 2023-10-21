@@ -1,19 +1,21 @@
+/** @format */
+
 import PasswordInput from '../core/PasswordInput';
 import PrimaryButton from '../core/PrimaryButton';
-import React, { useState, FormEventHandler } from 'react';
+import { useState, FormEventHandler } from 'react';
 import { useDispatch } from 'react-redux';
 import { showSpinner, hideSpinner } from '../redux/spinnerSlice';
 import API from '../utils/API';
 import Input from '../core/Input';
 import { useNavigate } from 'react-router-dom';
-import FLY from "../assets/images/fly3.png";
+import FLY from '../assets/images/fly3.png';
 
-const RegisterPage = () => {
+const RegisterAirlinePage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [appUser, setAppUser] = useState('user');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [nid, setNid] = useState('');
+  const [name, setName] = useState('');
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -21,13 +23,14 @@ const RegisterPage = () => {
   const onSubmitForm = (e) => {
     e.preventDefault();
     const role = appUser.toUpperCase().replace(' ', '_');
-    // dispatch(showSpinner('Creating your account...'));
+    dispatch(showSpinner('Creating your account...'));
     API.post('/auth/signup', {
       username: email,
       password,
       role
     })
       .then((res) => {
+        navigate('/login-airline');
         console.log(res.data.accessToken);
       })
       .catch((error) => {
@@ -58,27 +61,28 @@ const RegisterPage = () => {
           className="flex w-full items-center justify-center bg-white p-10 rounded-lg shadow-md rounded-lg"
           onSubmit={onSubmitForm}>
           <div className="w-full">
-              <div className="flex justify-center">
-                  <img src={FLY} alt="FLY" className="w-2/5" />
-              </div>
-            <h3 className="text-center mb-2 font-lg text-gray-700 font-semibold">Register as {appUser}</h3>
+            <div className="flex justify-center">
+              <img src={FLY} alt="FLY" className="w-2/5" />
+            </div>
+            <h3 className="text-center mb-2 font-lg text-gray-700 font-semibold">
+              Register as {appUser}
+            </h3>
             <div className="w-full mt-3">
               <div>Email</div>
               <Input
                 className="w-full mb-4 "
-                value={email}
-                type="email"
                 placeholder="Enter username"
+                value={email}
                 handleInputChange={setEmail}
               />
             </div>
             <div className="w-full mt-3">
-              <div>Passport ID</div>
+              <div>Airline Name</div>
               <Input
                 className="w-full mb-4 "
-                value={nid}
-                placeholder="Enter passport number"
-                handleInputChange={setNid}
+                placeholder="Enter airline name"
+                value={name}
+                handleInputChange={setName}
               />
             </div>
             <div className="mb-3">
@@ -105,12 +109,12 @@ const RegisterPage = () => {
             <div className="flex justify-between">
               <div
                 className="cursor-pointer text-left my-3 text-sm text-indigo-600"
-                onClick={() => navigate('/register-airline')}>
-                Are you an airline provider? Register here!
+                onClick={() => navigate('/register')}>
+                Are you an airline customer? Register here!
               </div>
               <p
                 className="cursor-pointer text-left my-3 text-sm text-indigo-600"
-                onClick={() => navigate('/login')}>
+                onClick={() => navigate('/login-airline')}>
                 Login here!
               </p>
             </div>
@@ -120,5 +124,4 @@ const RegisterPage = () => {
     </div>
   );
 };
-
-export default RegisterPage;
+export default RegisterAirlinePage;

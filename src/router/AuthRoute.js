@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 const AuthRoute= () => {
   const isAuth = useSelector((state) => state.authSlice.isLogedin);
 
-  return isAuth ? <Outlet /> : <Navigate to="/signin" />;
+  return isAuth ? <Outlet /> : <Navigate to="/login" />;
 };
 
 export default AuthRoute;

@@ -10,7 +10,7 @@ import { login } from '../redux/authSlice';
 import { fetchUser } from '../redux/userSlice';
 import FLY from '../assets/images/fly3.png';
 
-const LoginPage = () => {
+const LoginAirlinePage = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
@@ -63,7 +63,7 @@ const LoginPage = () => {
               <div>Username</div>
               <Input
                 className="w-full mb-4 "
-                placeholder="Enter customer username"
+                placeholder="Enter airline username"
                 handleInputChange={setEmail}
               />
             </div>
@@ -81,13 +81,13 @@ const LoginPage = () => {
             <div className="flex justify-between">
               <p
                 className="cursor-pointer text-sm text-left my-3 text-indigo-600"
-                onClick={() => navigate('/register')}>
+                onClick={() => navigate('/register-airline')}>
                 Register here!
               </p>
               <p
                 className="cursor-pointer text-sm text-left my-3 text-indigo-600"
-                onClick={() => navigate('/login-airline')}>
-                Login as airline provider
+                onClick={() => navigate('/login')}>
+                Login as airline customer
               </p>
             </div>
           </div>
@@ -96,4 +96,4 @@ const LoginPage = () => {
     </div>
   );
 };
-export default LoginPage;
+export default LoginAirlinePage;
