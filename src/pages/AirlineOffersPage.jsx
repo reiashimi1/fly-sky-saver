@@ -9,6 +9,7 @@ import API from '../utils/API.js';
 import DeleteButton from '../core/DeleteButton.jsx';
 import EditButton from '../core/EditButton.jsx';
 import AddButton from '../core/AddButton.jsx';
+import AddOffer from '../components/airlineOffers/AddOffer.jsx';
 
 const columns = [
   {
@@ -105,6 +106,7 @@ const AirlineOffersPage = () => {
           </div>
         </div>
       </div>
+      {addModal && <AddOffer openModal={addModal} setOpenModal={setAddModal} />}
     </Layout>
   );
 };

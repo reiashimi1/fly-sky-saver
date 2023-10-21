@@ -6,7 +6,7 @@ import CancelButton from './CancelButton';
 const BlankModal = ({
   setOpenModal,
   onClose,
-  bgColor,
+  bgColor = "white",
   icon,
   title,
   otherButtons = [],
@@ -63,7 +63,7 @@ const BlankModal = ({
                 {button}{' '}
               </div>
             ))}
-            <CancelButton label="Close" className="mr-2" onClick={close} to={''} />
+            <CancelButton label="Close" className="mr-2" onClick={close} />
           </div>
         </div>
       </div>
