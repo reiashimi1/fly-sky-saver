@@ -13,17 +13,31 @@ const Header = () => {
     navigate('/signin');
   };
   return (
-    <div>
-      <nav className="flex justify-between items-center align-content-center bg-white p-3">
-        <div className="flex">{<img src={fly3} className="w-14 h-12" />}</div>
+    <div
+      style={{
+        background: '#c3eeff',
+        color: 'rgb(104 65 137)',
+        boxShadow: '0 3px 6px 3px #7758a9',
+        position: 'relative',
+        zIndex: '1'
+      }}>
+      <nav className="flex justify-between items-center bg-white p-3 text-lg">
+        <div className="flex flex-1 h-full w-full">
+          {<img src={fly3} className="w-14 h-12" alt="logo" />}
+        </div>
 
-        <div className="flex space-x-20 text-sm">
+        <div className="flex flex-1 space-x-10">
           <div onClick={() => navigate('/home')}>Home</div>
           <div onClick={() => navigate('/offers')}>Offers</div>
           <div onClick={() => navigate('/bookings')}>Bookings</div>
           <div onClick={() => navigate('/profile')}>My profile</div>
         </div>
-        <PrimaryButton to="/login" label="SIGN OUT" onClick={() => dispatch(logout())} />
+        <PrimaryButton
+          to="/login"
+          className="flex-1 align-right"
+          label="SIGN OUT"
+          onClick={() => dispatch(logout())}
+        />
       </nav>
     </div>
   );

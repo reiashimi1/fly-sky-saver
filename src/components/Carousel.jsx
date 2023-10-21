@@ -1,7 +1,7 @@
 import React from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import {providers} from "../utils/data/providers.js";
+import { providers } from '../utils/data/providers.js';
 
 const responsive = {
   desktop: {
@@ -35,7 +35,7 @@ const CarouselComponent = () => {
         dotListClass="custom-dot-list-style">
         {providers.map((imageUrl, index) => {
           return (
-            <div className="slider object-contain" key={index}>
+            <div className="flex justify-center align-center slider object-contain " key={index}>
               <img className="object-contain" src={imageUrl.url} alt="movie" />
             </div>
           );
