@@ -5,9 +5,8 @@ const Footer = (props) => {
       style={{
         background: 'rgb(104 65 137)',
         bottom: '0',
-        position: 'fixed',
-        width: '100%',
         position: 'relative',
+        width: '100%',
         marginTop: '10px'
       }}>
       <div className="px-5 md:px-15 ">

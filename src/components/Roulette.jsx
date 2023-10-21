@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Wheel } from 'react-custom-roulette';
 import Confetti from 'react-confetti';
+import PrimaryButton from '../core/PrimaryButton';
 
 const Roulette = () => {
   const [mustSpin, setMustSpin] = useState(false);
@@ -50,7 +51,16 @@ const Roulette = () => {
 
   return (
     <div>
-      {loadConfetti && <Confetti width={screenSize.width} height={screenSize.height} />}
+      {loadConfetti && (
+        <Confetti
+          width={screenSize.offsetWidth}
+          height={screenSize.offsetHeight}
+          tweenDuration={5000}
+          run={loadConfetti}
+          style={{ zIndex: '10' }}
+        />
+      )}
+      <PrimaryButton className="mx-auto" label="Spin" onClick={handleSpinClick} />
       <Wheel
         outerBorderColor="gray"
         outerBorderWidth="2"
@@ -64,10 +74,12 @@ const Roulette = () => {
         onStopSpinning={() => {
           setMustSpin(false);
           setLoadConfetti(true);
+          setTimeout(() => {
+            setLoadConfetti(false);
+          }, 4000);
         }}
       />
       {winningOption && <p> winning option is: {prizeNumber}</p>}
-      <button onClick={handleSpinClick}>SPIN</button>
     </div>
   );
 };

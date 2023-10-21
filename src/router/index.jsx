@@ -2,7 +2,7 @@ import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-d
 import App from '../App';
 import LoginPage from '../pages/LoginPage';
 import RegisterPage from '../pages/RegisterPage';
-import TestingCards from '../pages/TestingCards';
+import TestingCards from '../pages/LandingPage';
 import LoginAirlinePage from '../pages/LoginAirlinePage.jsx';
 import RegisterAirlinePage from '../pages/RegisterAirlinePage.jsx';
 import AirlineHomePage from '../pages/AirlineHomePage.jsx';
