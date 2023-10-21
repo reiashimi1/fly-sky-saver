@@ -11,6 +11,7 @@ import Layout from './layout/user/Layout.jsx';
 import DescriptiveCard from './components/DescriptiveCard';
 import OfferAnnouncements from './components/OfferAnnouncements';
 import CarouselComponent from './components/Carousel';
+import MostPopularCarouselComponent from './components/MostPopularCarouselComponent';
 
 function App() {
   const count = useSelector((state) => state.counterSlice.value);
@@ -18,9 +19,24 @@ function App() {
 
   return (
     <Layout>
-      <div className="flex px-10">
+      <div className="flex flex-col px-10">
         <OfferAnnouncements />
-        <CarouselComponent />
+        <div className="">
+          <section
+            style={{
+              margin: '20px 0 20px 0'
+            }}>
+            <MostPopularCarouselComponent />
+          </section>
+        </div>
+        <div className="">
+          <section
+            style={{
+              margin: '20px 0 20px 0'
+            }}>
+            <MostPopularCarouselComponent />
+          </section>
+        </div>
       </div>
       {/* <Roulette /> */}
     </Layout>
