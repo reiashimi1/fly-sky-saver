@@ -6,9 +6,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { hideSpinner, showSpinner } from '../redux/spinnerSlice';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../redux/authSlice';
-import { fetchUser } from '../redux/userSlice';
 import FLY from '../assets/images/fly3.png';
-import AuthAPI from "../utils/AuthAPI.js";
+import AuthAPI from '../utils/AuthAPI.js';
+import useValidate from '../hooks/useValidate.js';
+import loginValidator from '../utils/validators/LoginValidator.js';
+import _ from 'lodash';
 
 const LoginPage = () => {
   const [email, setEmail] = useState();
@@ -16,24 +18,36 @@ const LoginPage = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  // const accessToken = useSelector((state) => _.get(state, 'authSlice.accessToken', null));
+  // const role = useSelector((state) => _.get(state, 'authSlice.userRole', null));
+  // const name = useSelector((state) => _.get(state, 'authSlice.userName', null));
+
+  const { clearError, getError, validateErrors } = useValidate();
 
   const onSubmitForm = (e) => {
     e.preventDefault();
-    // if (!email && !password) {
-    // 	console.log('im here');
-    // 	showError('Please fill in the form');
-    // 	return;
-    // } else {
-    dispatch(showSpinner('Loading data...'));
-    AuthAPI.post('/auth/signin', {
-      username: email,
+    const errors = validateErrors({ email, password }, loginValidator);
+    if (errors) return;
+    dispatch(showSpinner('Please wait...'));
+    AuthAPI.post('/auth/login', {
+      email,
       password
     })
       .then((res) => {
-        console.log(res.data.accessToken);
-        dispatch(login(res.data.accessToken));
-        dispatch(fetchUser());
-        navigate('/home');
+        const { auth, user } = res.data;
+        const accessToken = auth.accessToken;
+        const userRole = user.role;
+        let userName;
+        if (user?.role === 'user') {
+          userName = user.name;
+          dispatch(login({ accessToken, userName, userRole }));
+          navigate("/");
+        } else {
+          userName = user.airline.name;
+          dispatch(login({ accessToken, userName, userRole }));
+          navigate("/airline-home")
+        }
+        dispatch(login({ accessToken, userName, userRole }));
       })
       .catch((error) => {
         console.error(error);
@@ -62,17 +76,19 @@ const LoginPage = () => {
             <div className="w-full mt-3">
               <div>Username</div>
               <Input
-                className="w-full mb-4 "
-                placeholder="Enter customer username"
-                handleInputChange={setEmail}
+                className="w-full mb-4"
+                error={getError('email')}
+                placeholder="Enter email"
+                handleInputChange={(value) => clearError('email', value, setEmail)}
               />
             </div>
             <div className="mb-3">
               <div>Password</div>
               <PasswordInput
                 className="w-full mb-4 rounded"
+                error={getError('password')}
                 placeholder="Enter password"
-                handleInputChange={setPassword}
+                handleInputChange={(value) => clearError('password', value, setPassword)}
               />
             </div>
             <div className="flex w-full mt-8">
@@ -84,11 +100,11 @@ const LoginPage = () => {
                 onClick={() => navigate('/register')}>
                 Register here!
               </p>
-              <p
-                className="cursor-pointer text-sm text-left my-3 text-indigo-600"
-                onClick={() => navigate('/login-airline')}>
-                Login as airline provider
-              </p>
+              {/*<p*/}
+              {/*  className="cursor-pointer text-sm text-left my-3 text-indigo-600"*/}
+              {/*  onClick={() => navigate('/login-airline')}>*/}
+              {/*  Login as airline provider*/}
+              {/*</p>*/}
             </div>
           </div>
         </form>
@@ -96,4 +112,5 @@ const LoginPage = () => {
     </div>
   );
 };
+
 export default LoginPage;
