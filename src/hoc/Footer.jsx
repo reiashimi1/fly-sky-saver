@@ -1,8 +1,3 @@
-/** @format */
-
-import { EyeIcon } from '@heroicons/react/outline';
-import { Link } from 'react-router-dom';
-
 const Footer = (props) => {
   return (
     <div
@@ -19,7 +14,7 @@ const Footer = (props) => {
             <span className="mr-3">Tel:</span> +355 69 53 44 037
           </a>
           <a href="mailto:support@rpay.ai" className="flex flex-row items-center md:mx-10">
-            <span className="mr-3">E-mail:</span> support@lufthansa.ai
+            <span className="mr-3">E-mail:</span> support@fly.ai
           </a>
           <li className="flex flex-row flex-wrap items-center md:mx-10">
             <span className="mr-3">Address:</span> Wherever you are!

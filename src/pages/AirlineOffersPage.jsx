@@ -172,13 +172,6 @@ const AirlineOffersPage = () => {
             selectedRows={selectedRows}
             setSelectedRows={setSelectedRows}
           />
-          <DataTable
-              rows={rows}
-              columns={columns}
-              selectedRows={selectedRows}
-              setSelectedRows={setSelectedRows}
-          />
-
           <div className="mt-5 flex justify-end space-x-5 items-end">
             <EditButton label="EDIT" onClick={() => setEditModal(true)} />
             <DeleteButton label="REMOVE" onClick={() => setRemoveModal(true)} />
