@@ -12,34 +12,44 @@ import AddButton from '../core/AddButton.jsx';
 import AddOffer from '../components/airlineOffers/AddOffer.jsx';
 import EditOffer from '../components/airlineOffers/EditOffer.jsx';
 import CancelOffer from '../components/airlineOffers/CancelOffer.jsx';
+import { dateFormatter } from '../utils/helpers.js';
 
 const columns = [
   {
     field: 'title',
     headerName: 'Title',
-    width: 150
+    width: 100
   },
   {
     field: 'Type',
     headerName: 'Type',
-    width: 150,
+    width: 100,
     valueGetter: (params) => params.row.type.toUpperCase()
   },
   {
-    field: 'amount',
+    field: 'discount',
     headerName: 'Amount',
     type: 'number',
-    width: 100
+    width: 100,
+    valueGetter: (params) => params.row.discount + " %"
   },
   {
     field: 'startDate',
     headerName: 'Start date',
-    width: 100
+    width: 100,
+    valueGetter: (params) => dateFormatter(params.row.startDate)
   },
   {
     field: 'endDate',
     headerName: 'End date',
-    width: 100
+    width: 100,
+    valueGetter: (params) => dateFormatter(params.row.endDate)
+  },
+  {
+    field: 'travel',
+    headerName: 'Travel',
+    width: 120,
+    valueGetter: (params) => params.row.origin + ' - ' + params.row.destination
   },
   {
     field: 'description',
@@ -48,92 +58,8 @@ const columns = [
   }
 ];
 
-const rows = [
-  {
-    id: 1,
-    title: 'Snow',
-    type: 'DISCOUNT',
-    amount: 35,
-    startDate: '2022-10-10',
-    endDate: '2022-10-10',
-    description: 'Lorem Ipsum This is a description'
-  },
-  {
-    id: 2,
-    title: 'Snow',
-    type: 'percentage',
-    amount: 35,
-    startDate: '2022-10-10',
-    endDate: '2022-10-10',
-    description: 'Lorem Ipsum This is a description'
-  },
-  {
-    id: 3,
-    title: 'Snow',
-    type: 'fixedAmount',
-    amount: 35,
-    startDate: '2022-10-10',
-    endDate: '2022-10-10',
-    description: 'Lorem Ipsum This is a description. Lorem Ipsum This is a description'
-  },
-  {
-    id: 4,
-    title: 'Snow',
-    type: 'fixedAmount',
-    amount: 35,
-    startDate: '2022-10-10',
-    endDate: '2022-10-10',
-    description: 'Lorem Ipsum This is a description'
-  },
-  {
-    id: 5,
-    title: 'Snow',
-    type: 'percentage',
-    amount: 35,
-    startDate: '2022-10-10',
-    endDate: '2022-10-10',
-    description: 'Lorem Ipsum This is a description'
-  },
-  {
-    id: 6,
-    title: 'Snow',
-    type: 'fixedAmount',
-    amount: 35,
-    startDate: '2022-10-10',
-    endDate: '2022-10-10',
-    description: 'Lorem Ipsum This is a description'
-  },
-  {
-    id: 7,
-    title: 'Snow',
-    type: 'fixedAmount',
-    amount: 35,
-    startDate: '2022-10-10',
-    endDate: '2022-10-10',
-    description: 'Lorem Ipsum This is a description'
-  },
-  {
-    id: 8,
-    title: 'Snow',
-    type: 'percentage',
-    amount: 35,
-    startDate: '2022-10-10',
-    endDate: '2022-10-10',
-    description: 'Lorem Ipsum This is a description'
-  },
-  {
-    id: 9,
-    title: 'Snow',
-    type: 'percentage',
-    amount: 35,
-    startDate: '2022-10-10',
-    endDate: '2022-10-10',
-    description: 'Lorem Ipsum This is a description'
-  }
-];
-
 const AirlineOffersPage = () => {
-  const [offers, setOffers] = useState(rows);
+  const [offers, setOffers] = useState([]);
   const [selectedRows, setSelectedRows] = useState([]);
   const [updated, setUpdated] = useState(0);
   const [addModal, setAddModal] = useState(false);
@@ -143,19 +69,20 @@ const AirlineOffersPage = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // dispatch(showSpinner('Loading data...'));
-    // API.get('/auth/signin')
-    //   .then((res) => {
-    //     console.log(res.data);
-    //   })
-    //   .catch((error) => {
-    //     console.error(error);
-    //   })
-    //   .finally(() => dispatch(hideSpinner()));
+    dispatch(showSpinner('Loading data...'));
+    API.get('/airline/offers')
+      .then((res) => {
+        const {offers} = res.data;
+        setOffers(offers);
+      })
+      .catch((error) => {
+        console.error(error);
+      })
+      .finally(() => dispatch(hideSpinner()));
   }, [updated]);
 
-  const removeOffer = () => {
-    setUpdated((prevState) => prevState++);
+  const updateData = () => {
+    setUpdated((prevState) => prevState + 1);
   };
 
   return (
@@ -167,7 +94,7 @@ const AirlineOffersPage = () => {
             <AddButton label="ADD" onClick={() => setAddModal(true)} />
           </div>
           <DataTable
-            rows={rows}
+            rows={offers}
             columns={columns}
             selectedRows={selectedRows}
             setSelectedRows={setSelectedRows}
@@ -178,19 +105,21 @@ const AirlineOffersPage = () => {
           </div>
         </div>
       </div>
-      {addModal && <AddOffer openModal={addModal} setOpenModal={setAddModal} />}
+      {addModal && (
+        <AddOffer openModal={addModal} setOpenModal={setAddModal} onSuccess={updateData} />
+      )}
       {editModal && selectedRows.length > 0 && (
         <EditOffer
           openModal={editModal}
           setOpenModal={setEditModal}
           selectedOffer={selectedRows[0]}
-          onSuccess={() => setUpdated((prevState) => prevState++)}
+          onSuccess={updateData}
         />
       )}
       {removeModal && selectedRows.length > 0 && (
         <CancelOffer
           setOpenModal={setRemoveModal}
-          onSuccess={() => setUpdated((prevState) => prevState++)}
+          onSuccess={updateData}
           selectedOffer={selectedRows[0]}
         />
       )}

@@ -66,7 +66,7 @@ API.interceptors.response.use(
       const refreshToken = store.getState().authSlice.refreshToken;
 
       return new Promise((resolve, reject) => {
-        API.post('/auth/business/token', {
+        API.post('/auth/token', {
           refreshToken
         })
           .then((response) => {

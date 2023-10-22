@@ -511,77 +511,6 @@
     }
 }
 
-@media only screen and (min-width: 600px) {
-    .market-place-component {
-        background-image: linear-gradient(-10deg, rgba(0, 1, 39, 0.6) 2%, rgb(0, 1, 39, 0.6) 12%, transparent 20%, transparent 45%, rgba(0, 1, 39, 0.8) 100%),
-        url('../../assets/svg/homePage/marketplace.svg');
-        border-width: 0 1px 1px 1px;
-        border-style: solid;
-        border-color: rgba(76, 78, 106, 255);
-        border-radius: 30px;
-        height: 620px;
-    }
-}
-
-
-@media only screen and (min-width: 900px) {
-    .market-place-component {
-        background-image: linear-gradient(-10deg, rgba(0, 1, 39, 0.6) 2%, rgb(0, 1, 39, 0.6) 12%, transparent 20%, transparent 45%, rgba(0, 1, 39, 0.8) 100%),
-        url('../../assets/svg/homePage/marketplace.svg');
-        border-width: 0 1px 1px 1px;
-        border-style: solid;
-        border-color: rgba(76, 78, 106, 255);
-        border-radius: 30px;
-    }
-}
-
-.cashback-component {
-    background: linear-gradient(330deg, rgba(0, 105, 166, 0.75), transparent 55%),
-    linear-gradient(160deg, rgba(0, 105, 166, 0.5), transparent 17%),
-    linear-gradient(-20deg, rgba(0, 1, 39, 0.1), rgba(0, 1, 39, 0.4), rgba(0, 1, 39, 0.7), rgba(0, 1, 39, 1));
-    border-width: 0 1px 1px 1px;
-    border-style: solid;
-    border-color: rgba(76, 78, 106, 255);
-    border-radius: 30px;
-}
-
-@media only screen and (min-width: 1024px) {
-    .custom-scrollbar {
-        height: 1000px;
-        min-width: 500px;
-        cursor: pointer;
-    }
-
-    .custom-scrollbar::-webkit-scrollbar {
-        width: 16px;
-        height: 10px;
-        padding-bottom: 20px;
-        padding-top: 20px;
-    }
-
-    .custom-scrollbar::-webkit-scrollbar-track {
-        border-radius: 10px;
-        width: 18px;
-        background: #000026;
-        margin-left: 2000px;
-    }
-
-    .custom-scrollbar::-webkit-scrollbar-thumb {
-        margin: 2px;
-        border-radius: 10px;
-        background: #ffffff;
-        border: 3px solid transparent;
-    }
-}
-
-.pok-card-component {
-    background: rgba(255, 255, 255, 0.1);
-    border-width: 0 1px 1px 1px;
-    border-style: solid;
-    border-color: rgba(76, 78, 106, 255);
-    border-radius: 30px;
-}
-
 .card-component {
     background: rgba(255, 255, 255, 0.07);
     border-width: 0 1px 1px 1px;
@@ -603,12 +532,6 @@
         -webkit-mask-position: 0 0;
         transform: scale(1.1);
     }
-}
-
-.get-app-modal {
-    background: linear-gradient(33deg, rgba(0, 105, 166, 1), transparent 34%),
-    linear-gradient(205deg, rgba(0, 105, 166, 1), transparent 33%),
-    linear-gradient(-160deg, rgba(0, 1, 39, 0.1), rgba(0, 1, 39, 0.4), rgba(0, 1, 39, 0.7), rgba(0, 1, 39, 1));
 }
 
 .nav-depth {
@@ -754,4 +677,8 @@ input:-webkit-autofill:active {
     100% {
         transform: translateY(0px)
     }
+}
+
+.css-1h51icj-MuiAutocomplete-root .MuiOutlinedInput-root {
+    padding: 5px;
 }

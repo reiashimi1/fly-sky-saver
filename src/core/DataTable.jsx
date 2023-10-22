@@ -30,6 +30,7 @@ const DataTable = ({
         onRowClick={handleRowSelection}
         onRowSelectionModelChange={handleRowSelection}
         checkboxSelection={allowCheckboxSelection}
+        showColumnVerticalBorder={false}
       />
     </div>
   );
