@@ -47,7 +47,7 @@ const LatestCarouselComponent = () => {
   }, [dispatch]);
 
   return (
-    <div style={{ height: '200px', width: '850px' }}>
+    <div style={{ height: '200px', width: '950px' }}>
       <h1 className="font-bold text-xxl text-left" style={{ color: 'purple' }}>
         LATEST BOOKINGS
       </h1>

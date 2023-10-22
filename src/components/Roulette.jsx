@@ -8,6 +8,17 @@ import { Alert } from '@mui/material';
 
 const tryAgain = { option: 'Try Again' };
 
+const colors = [
+  '#16697a',
+  '#c72d6d',
+  '#82c0cc',
+  '#e74638',
+  '#ffa62b',
+  '#a5668b',
+  '#dac648',
+  '#729b79'
+];
+
 const Roulette = ({ airlineId }) => {
   const [roulette, setRoulette] = useState();
   const [mustSpin, setMustSpin] = useState(false);
@@ -44,6 +55,9 @@ const Roulette = ({ airlineId }) => {
           const optionsWithFallback = Array.from(
             { length: 8 },
             (_, index) => roulette.offers[index] || { option: 'Try Again' }
+          );
+          optionsWithFallback.map(
+            (offer, index) => (offer.style = { backgroundColor: colors[index], textColor: 'white' })
           );
           setOptions(optionsWithFallback);
         })
@@ -89,7 +103,10 @@ const Roulette = ({ airlineId }) => {
               .then(() => {
                 setWinningOption(winner);
               })
-              .catch((err) => console.log(err));
+              .catch((err) => {
+                console.log(err);
+                setTryAgainMessage(true);
+              });
           } else {
             setTryAgainMessage(true);
           }
@@ -99,8 +116,8 @@ const Roulette = ({ airlineId }) => {
   };
 
   return (
-    <div>
-      {loadConfetti && renderRoulette && (
+    <div className="">
+      {loadConfetti && !tryAgainMessage && renderRoulette && (
         <Confetti
           width={screenSize.offsetWidth}
           height={screenSize.offsetHeight}
@@ -109,12 +126,14 @@ const Roulette = ({ airlineId }) => {
           style={{ zIndex: '10' }}
         />
       )}
-      <PrimaryButton
-        className="mx-auto"
-        label="Spin"
-        onClick={handleSpinClick}
-        disabled={!canSpin}
-      />
+      {!isLoading && !isArrayEmpty(options) && (
+        <PrimaryButton
+          className="mx-auto"
+          label="Spin"
+          onClick={handleSpinClick}
+          disabled={!canSpin}
+        />
+      )}
       {!isLoading && !isArrayEmpty(options) && (
         <Wheel
           outerBorderColor="gray"

@@ -44,21 +44,21 @@ const OfferAnnouncements = () => {
   }, []);
 
   return (
-      <div style={{width: "850px"}}>
-    <Carousel
-      responsive={responsive}
-      autoPlay={true}
-      swipeable={true}
-      draggable={true}
-      showDots={true}
-      infinite={true}
-      partialVisible={false}
-      dotListClass="custom-dot-list-style">
-      {recommendations?.length > 0 && recommendations.map((recommendation) => (
-        <PersonalizedCard offer={recommendation} />
-      ))}
-    </Carousel>
-      </div>
+    <div style={{ width: '950px' }}>
+      <Carousel
+        responsive={responsive}
+        autoPlay={true}
+        style={{ transform: 'translateZ(0)'}}
+        swipeable={true}
+        draggable={true}
+        showDots={true}
+        infinite={true}
+        partialVisible={false}
+        dotListClass="custom-dot-list-style">
+        {recommendations?.length > 0 &&
+          recommendations.map((recommendation) => <PersonalizedCard offer={recommendation} />)}
+      </Carousel>
+    </div>
   );
 };
 

@@ -58,7 +58,7 @@ const OffersPage = () => {
 
   return (
     <Layout>
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center mb-36">
         <h1
           className="font-bold font-xxl text-center py-5"
           style={{ color: 'purple', fontSize: 'xx-large' }}>

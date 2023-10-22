@@ -6,14 +6,16 @@ const PersonalizedCard = ({ offer }) => {
     <div
       key={offer.id}
       className="flex border-2 rounded-lg mt-10"
-      style={{ height: '250px', width: "850px", borderColor: 'lightblue' }}>
+      style={{ height: '250px', width: '950px', borderColor: 'lightblue' }}>
       <div
-        className="flex rounded-lg flex-col justify-center align-center"
-        style={{ backgroundImage: `url(${offer?.imageUrl})`, width: 'inherit ' }}>
+        className="flex rounded-lg items-end text-bottom justify-left"
+        style={{ backgroundImage: `url(${offer?.imageUrl})`, width: 'inherit' }}>
         <h2
           style={{
-            background: 'white',
-            color: 'brown',
+            color: 'white',
+            textShadow: '10px',
+            fontWeight: 'bold',
+            fontSize: '24px',
             width: 'fit-content',
             alignSelf: 'center'
           }}

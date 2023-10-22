@@ -47,7 +47,7 @@ const MostPopularCarouselComponent = () => {
   }, []);
 
   return (
-    <div style={{ height: '200px', width: '850px' }}>
+    <div style={{ height: '200px', width: '950px' }}>
       <h1 className="font-bold text-xxl text-left" style={{ color: 'purple' }}>
         MOST POPULAR
       </h1>
@@ -60,16 +60,21 @@ const MostPopularCarouselComponent = () => {
         infinite={true}
         partialVisible={false}
         dotListClass="custom-dot-list-style">
-        {popularOffers?.length > 0 && popularOffers?.map((popularOffer) => (
-          <CarouselCards
+        {popularOffers?.length > 0 &&
+          popularOffers?.map((popularOffer) => (
+            <CarouselCards
               key={popularOffer.id}
-            imageSrc={popularOffer.imageUrl}
-            date={dateFormatter(popularOffer?.createdAt)}
-            title={popularOffer.title}
-            description={popularOffer.description}
-            onClick={() => console.log('testing')}
-          />
-        ))}
+              imageSrc={popularOffer.imageUrl}
+              type={popularOffer.type}
+              amount={popularOffer.discount}
+              source={popularOffer.source}
+              destination={popularOffer.destination}
+              date={dateFormatter(popularOffer?.createdAt)}
+              title={popularOffer.title}
+              description={popularOffer.description}
+              onClick={() => console.log('testing')}
+            />
+          ))}
       </Carousel>
     </div>
   );

@@ -25,10 +25,8 @@ const ProgressBar = ({ airlineId }) => {
     [loyaltyProgram]
   );
 
-  console.log(percentage);
-
   return (
-    <div className="mt-10">
+    <div className="mt-10 w-full">
       <div className="font-semibold text-xl">Check your loyalty</div>
       <Line percent={percentage} strokeWidth={4} strokeColor="#026e04" />
       <div>

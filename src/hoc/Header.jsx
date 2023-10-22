@@ -25,19 +25,13 @@ const Header = () => {
         <div className="flex flex-1 h-full w-full">
           {<img src={fly3} className="h-14" alt="logo" />}
         </div>
-
+          <div>
         <div className="flex flex-1 space-x-5">
           <div className="cursor-pointer" onClick={() => navigate('/')}>
             Home
           </div>
           <div className="cursor-pointer" onClick={() => navigate('/offers')}>
             Offers
-          </div>
-          <div className="cursor-pointer" onClick={() => navigate('/bookings')}>
-            Bookings
-          </div>
-          <div className="cursor-pointer" onClick={() => navigate('/profile')}>
-            My profile
           </div>
           <PrimaryButton
             to="/login"
@@ -46,6 +40,7 @@ const Header = () => {
             onClick={() => dispatch(logout())}
           />
         </div>
+          </div>
       </nav>
     </div>
   );

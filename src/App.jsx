@@ -36,8 +36,8 @@ function App() {
 
   return (
     <Layout>
-      <div className="flex xl:flex-row flex-col items-center">
-        <div className="flex flex-col px-10 w-3/5">
+      <div className="flex xl:flex-row flex-col">
+        <div className="flex flex-col px-10 pb-5 w-3/5">
           <OfferAnnouncements />
           <div className="">
             <section
@@ -47,25 +47,28 @@ function App() {
               <MostPopularCarouselComponent />
             </section>
           </div>
-          <div className="">
+          <div className="my-24">
             <section
               style={{
-                margin: '20px 0 20px 0'
+                margin: '40px 0 40px 0'
               }}>
               <LatestCarouselComponent />
             </section>
           </div>
         </div>
-        <div className="flex flex-col align-items-center justify-content-center pt-10 z-9999  ">
+        <div className="flex flex-col align-items-center justify-content-center ml-10 pt-16 w-1/4">
+          <div className="font-semibold text-indigo-800 pb-3 pl-3">Airline Provider</div>
           <SelectInput
             placeholder="Select airline"
-            className="mb-40 mt-10"
+            className="mb-40"
             maxHeight={180}
             selectedOptionState={[selectedOption, setSelectedOption]}
             options={options}
           />
-          <Roulette airlineId={selectedOption?.value} />
-          <ProgressBar airlineId={selectedOption?.value} />
+          <div className="flex flex-col items-center w-full">
+            <Roulette airlineId={selectedOption?.value} />
+            <ProgressBar airlineId={selectedOption?.value} />
+          </div>
         </div>
       </div>
     </Layout>
