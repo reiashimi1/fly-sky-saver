@@ -44,7 +44,7 @@ const LatestCarouselComponent = () => {
         console.error(error);
       })
       .finally(() => dispatch(hideSpinner()));
-  }, []);
+  }, [dispatch]);
 
   return (
     <div style={{ height: '200px', width: '850px' }}>
@@ -60,44 +60,17 @@ const LatestCarouselComponent = () => {
         infinite={true}
         partialVisible={false}
         dotListClass="custom-dot-list-style">
-        {latestOffers.map((latestOffer) => (
-          <CarouselCards
-            key={latestOffer.id}
-            imageSrc={latestOffer.imageUrl}
-            date={dateFormatter(latestOffer?.createdAt)}
-            title={latestOffer.title}
-            description={latestOffer.description}
-            onClick={() => console.log('testing')}
-          />
-        ))}
-        {/*<CarouselCards*/}
-        {/*  imageSrc={WizzAir}*/}
-        {/*  date="3 shkurt "*/}
-        {/*  title="Latest Wizz news"*/}
-        {/*  description="CHECK OUT HERE THE LATEST NEWS FROM WIZZAIR"*/}
-        {/*  onClick={() => console.log('testing')}*/}
-        {/*/>*/}
-        {/*<CarouselCards*/}
-        {/*  imageSrc={AirAlbania}*/}
-        {/*  date="3 shkurt "*/}
-        {/*  title="Latest Wizz news"*/}
-        {/*  description="CHECK OUT HERE THE LATEST NEWS FROM WIZZAIR"*/}
-        {/*  onClick={() => console.log('testing')}*/}
-        {/*/>*/}
-        {/*<CarouselCards*/}
-        {/*  imageSrc={Alitalia}*/}
-        {/*  date="3 shkurt "*/}
-        {/*  title="Latest Wizz news"*/}
-        {/*  description="CHECK OUT HERE THE LATEST NEWS FROM WIZZAIR"*/}
-        {/*  onClick={() => console.log('testing')}*/}
-        {/*/>*/}
-        {/*<CarouselCards*/}
-        {/*  imageSrc={Alitalia}*/}
-        {/*  date="3 shkurt "*/}
-        {/*  title="Latest Wizz news"*/}
-        {/*  description="CHECK OUT HERE THE LATEST NEWS FROM WIZZAIR"*/}
-        {/*  onClick={() => console.log('testing')}*/}
-        {/*/>*/}
+        {latestOffers?.length > 0 &&
+          latestOffers?.map((latestOffer) => (
+            <CarouselCards
+              key={latestOffer.id}
+              imageSrc={latestOffer.imageUrl}
+              date={dateFormatter(latestOffer?.createdAt)}
+              title={latestOffer.title}
+              description={latestOffer.description}
+              onClick={() => console.log('testing')}
+            />
+          ))}
       </Carousel>
     </div>
   );

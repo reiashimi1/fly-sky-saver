@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import CarouselCards from './CarouselCards';
-import WizzAir from '../assets/images/WizzAir.png';
-import AirAlbania from '../assets/images/AirAlbania.svg';
-import Alitalia from '../assets/images/Alitalia.svg';
+// import WizzAir from '../assets/images/WizzAir.png';
+// import AirAlbania from '../assets/images/AirAlbania.svg';
+// import Alitalia from '../assets/images/Alitalia.svg';
 import { useDispatch } from 'react-redux';
 import { hideSpinner, showSpinner } from '../redux/spinnerSlice.js';
 import API from '../utils/API.js';
@@ -60,7 +60,7 @@ const MostPopularCarouselComponent = () => {
         infinite={true}
         partialVisible={false}
         dotListClass="custom-dot-list-style">
-        {popularOffers.length > 0 && popularOffers?.map((popularOffer) => (
+        {popularOffers?.length > 0 && popularOffers?.map((popularOffer) => (
           <CarouselCards
               key={popularOffer.id}
             imageSrc={popularOffer.imageUrl}
@@ -70,34 +70,6 @@ const MostPopularCarouselComponent = () => {
             onClick={() => console.log('testing')}
           />
         ))}
-        {/*<CarouselCards*/}
-        {/*  imageSrc={WizzAir}*/}
-        {/*  date="3 shkurt "*/}
-        {/*  title="Latest Wizz news"*/}
-        {/*  description="CHECK OUT HERE THE LATEST NEWS FROM WIZZAIR"*/}
-        {/*  onClick={() => console.log('testing')}*/}
-        {/*/>*/}
-        {/*<CarouselCards*/}
-        {/*  imageSrc={AirAlbania}*/}
-        {/*  date="3 shkurt "*/}
-        {/*  title="Latest Wizz news"*/}
-        {/*  description="CHECK OUT HERE THE LATEST NEWS FROM WIZZAIR"*/}
-        {/*  onClick={() => console.log('testing')}*/}
-        {/*/>*/}
-        {/*<CarouselCards*/}
-        {/*  imageSrc={Alitalia}*/}
-        {/*  date="3 shkurt "*/}
-        {/*  title="Latest Wizz news"*/}
-        {/*  description="CHECK OUT HERE THE LATEST NEWS FROM WIZZAIR"*/}
-        {/*  onClick={() => console.log('testing')}*/}
-        {/*/>*/}
-        {/*<CarouselCards*/}
-        {/*  imageSrc={Alitalia}*/}
-        {/*  date="3 shkurt "*/}
-        {/*  title="Latest Wizz news"*/}
-        {/*  description="CHECK OUT HERE THE LATEST NEWS FROM WIZZAIR"*/}
-        {/*  onClick={() => console.log('testing')}*/}
-        {/*/>*/}
       </Carousel>
     </div>
   );

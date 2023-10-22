@@ -29,7 +29,7 @@ const columns = [
     headerName: 'Amount',
     type: 'number',
     width: 100,
-    valueGetter: (params) => params.row.discount + " %"
+    valueGetter: (params) => params.row.discount + ' %'
   },
   {
     field: 'startDate',
@@ -44,8 +44,8 @@ const columns = [
     valueGetter: (params) => dateFormatter(params.row.endDate)
   },
   {
-    field: 'travel',
-    headerName: 'Travel',
+    field: 'route',
+    headerName: 'Route',
     width: 120,
     valueGetter: (params) => params.row.origin + ' - ' + params.row.destination
   },
@@ -70,7 +70,7 @@ const AirlineOffersPage = () => {
     dispatch(showSpinner('Loading data...'));
     API.get('/airline/offers')
       .then((res) => {
-        const {offers} = res.data;
+        const { offers } = res.data;
         setOffers(offers);
       })
       .catch((error) => {
@@ -86,7 +86,9 @@ const AirlineOffersPage = () => {
   return (
     <Layout>
       <div className="p-5">
-        <div className="text-xl font-bold uppercase mb-3 pl-3">All Offers</div>
+        <h1 className="font-bold text-xxl text-center pb-5" style={{ color: 'purple' }}>
+          ALL OFFERS
+        </h1>
         <div className="bg-white p-8">
           <div className="flex justify-end mb-3">
             <AddButton label="ADD" onClick={() => setAddModal(true)} />

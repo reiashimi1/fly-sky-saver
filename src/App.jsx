@@ -36,7 +36,7 @@ function App() {
 
   return (
     <Layout>
-      <div className="flex lg:flex-row flex-col items-center">
+      <div className="flex xl:flex-row flex-col items-center">
         <div className="flex flex-col px-10 w-3/5">
           <OfferAnnouncements />
           <div className="">

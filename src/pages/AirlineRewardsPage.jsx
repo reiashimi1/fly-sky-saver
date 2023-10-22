@@ -10,7 +10,7 @@ import AddButton from '../core/AddButton.jsx';
 import EditOffer from '../components/airlineOffers/EditOffer.jsx';
 import CancelOffer from '../components/airlineOffers/CancelOffer.jsx';
 import { dateFormatter } from '../utils/helpers.js';
-import AddReward from "../components/airlineRewards/AddRewards.jsx";
+import AddReward from '../components/airlineRewards/AddRewards.jsx';
 
 const columns = [
   {
@@ -29,7 +29,7 @@ const columns = [
     headerName: 'Amount',
     type: 'number',
     width: 100,
-    valueGetter: (params) => params.row.discount + " %"
+    valueGetter: (params) => params.row.discount + ' %'
   },
   {
     field: 'startDate',
@@ -70,7 +70,7 @@ const AirlineRewardsPage = () => {
     dispatch(showSpinner('Loading data...'));
     API.get('/airline/rewards')
       .then((res) => {
-        const {offers} = res.data;
+        const { offers } = res.data;
         setRewards(offers);
       })
       .catch((error) => {
@@ -86,7 +86,9 @@ const AirlineRewardsPage = () => {
   return (
     <Layout>
       <div className="p-5">
-        <div className="text-xl font-bold uppercase mb-3 pl-3">All Rewards</div>
+        <h1 className="font-bold text-xxl text-center pb-5" style={{ color: 'purple' }}>
+          ALL REWARDS
+        </h1>
         <div className="bg-white p-8">
           <div className="flex justify-end mb-3">
             <AddButton label="ADD" onClick={() => setAddModal(true)} />

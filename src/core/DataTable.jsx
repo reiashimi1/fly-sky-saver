@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 
 const DataTable = ({
-  rows,
+  rows = [],
   columns,
   selectedRows,
   setSelectedRows,
@@ -17,21 +17,23 @@ const DataTable = ({
 
   return (
     <div style={{ height: 400, width: '100%' }}>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        initialState={{
-          pagination: {
-            paginationModel: { page: 0, pageSize: 5 }
-          }
-        }}
-        pageSizeOptions={[5, 10]}
-        selectionModel={selectedRows}
-        onRowClick={handleRowSelection}
-        onRowSelectionModelChange={handleRowSelection}
-        checkboxSelection={allowCheckboxSelection}
-        showColumnVerticalBorder={false}
-      />
+      {rows?.length > 0 && (
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          initialState={{
+            pagination: {
+              paginationModel: { page: 0, pageSize: 5 }
+            }
+          }}
+          pageSizeOptions={[5, 10]}
+          selectionModel={selectedRows}
+          onRowClick={handleRowSelection}
+          onRowSelectionModelChange={handleRowSelection}
+          checkboxSelection={allowCheckboxSelection}
+          showColumnVerticalBorder={false}
+        />
+      )}
     </div>
   );
 };

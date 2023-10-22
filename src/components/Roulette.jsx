@@ -4,6 +4,7 @@ import Confetti from 'react-confetti';
 import PrimaryButton from '../core/PrimaryButton';
 import API from '../utils/API.js';
 import { isArrayEmpty } from '../utils/helpers.js';
+import { Alert } from '@mui/material';
 
 const tryAgain = { option: 'Try Again' };
 
@@ -17,6 +18,7 @@ const Roulette = ({ airlineId }) => {
   const [options, setOptions] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [renderRoulette, setRenderRoulette] = useState(false);
+  const [tryAgainMessage, setTryAgainMessage] = useState(false);
 
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
 
@@ -30,11 +32,11 @@ const Roulette = ({ airlineId }) => {
           const { roulette } = res.data;
           setCanSpin(roulette.canBeClicked);
           setRoulette(roulette);
-          if(roulette.offers?.length > 0) {
+          if (roulette.offers?.length > 0) {
             setRenderRoulette(true);
           } else {
             setRenderRoulette(false);
-            return ;
+            return;
           }
 
           roulette?.offers.map((offer) => (offer.option = offer.title));
@@ -72,7 +74,7 @@ const Roulette = ({ airlineId }) => {
   }, [screenSize]);
 
   const handleSpinClick = () => {
-    console.log('nr', prizeNumber);
+    setTryAgainMessage(false);
     API.get(`/users/roulette/${roulette.id}/spin`)
       .then(() => {
         setLoadConfetti(false);
@@ -80,11 +82,16 @@ const Roulette = ({ airlineId }) => {
           const newPrizeNumber = Math.floor(Math.random() * options?.length);
           setPrizeNumber(newPrizeNumber);
           const winner = options[newPrizeNumber];
+          console.log(winner);
           setMustSpin(true);
           if (winner.option !== 'Try Again') {
             API.get(`/users/offers/${winner.id}/redeem`)
-              .then(() => {})
+              .then(() => {
+                setWinningOption(winner);
+              })
               .catch((err) => console.log(err));
+          } else {
+            setTryAgainMessage(true);
           }
         }
       })
@@ -106,7 +113,7 @@ const Roulette = ({ airlineId }) => {
         className="mx-auto"
         label="Spin"
         onClick={handleSpinClick}
-        //disabled={!canSpin}
+        disabled={!canSpin}
       />
       {!isLoading && !isArrayEmpty(options) && (
         <Wheel
@@ -128,7 +135,8 @@ const Roulette = ({ airlineId }) => {
           }}
         />
       )}
-      {winningOption && <p> winning option is: {prizeNumber}</p>}
+      {winningOption && <Alert severity="success">You won {winningOption.eventName}</Alert>}
+      {tryAgainMessage && !mustSpin && <Alert severity="info">Try again next time</Alert>}
     </div>
   );
 };
