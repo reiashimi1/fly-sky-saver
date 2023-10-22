@@ -4,13 +4,16 @@ import _ from 'lodash';
 import {Navigate, Outlet} from "react-router-dom";
 
 export const GuestRoute = () => {
-  const accessToken = useSelector((state) => _.get(state, 'authSlice.access_token', null));
+  const isAuth = useSelector((state) => _.get(state, 'authSlice.isLoggedIn', null));
   const role = useSelector((state) => _.get(state, 'authSlice.userRole', null));
 
-  if (accessToken) {
+  if (isAuth) {
+    console.log('guest');
     if (role === 'user') {
+      console.log('user');
       return <Navigate to="/" />;
     }
+    console.log('airline');
     return <Navigate to="/airline-home" />;
   }
 
