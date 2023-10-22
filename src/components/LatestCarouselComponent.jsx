@@ -1,29 +1,49 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import CarouselCards from './CarouselCards';
 import WizzAir from '../assets/images/WizzAir.png';
 import AirAlbania from '../assets/images/AirAlbania.svg';
 import Alitalia from '../assets/images/Alitalia.svg';
+import { useDispatch } from 'react-redux';
+import { hideSpinner, showSpinner } from '../redux/spinnerSlice.js';
+import API from '../utils/API.js';
+
+const responsive = {
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 3,
+    slidesToSlide: 3 // optional, default to 1.
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 768 },
+    items: 3,
+    slidesToSlide: 3 // optional, default to 1.
+  },
+  mobile: {
+    breakpoint: { max: 767, min: 464 },
+    items: 2,
+    slidesToSlide: 1 // optional, default to 1.
+  }
+};
 
 const LatestCarouselComponent = () => {
-  const responsive = {
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 3,
-      slidesToSlide: 3 // optional, default to 1.
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 768 },
-      items: 3,
-      slidesToSlide: 3 // optional, default to 1.
-    },
-    mobile: {
-      breakpoint: { max: 767, min: 464 },
-      items: 2,
-      slidesToSlide: 1 // optional, default to 1.
-    }
-  };
+  const [latestOffers, setLatestOffers] = useState([]);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(showSpinner('Loading data...'));
+    API.get('/users/recommendations/latest')
+      .then((res) => {
+        const { recomendations } = res.data;
+        setLatestOffers(recomendations);
+      })
+      .catch((error) => {
+        console.error(error);
+      })
+      .finally(() => dispatch(hideSpinner()));
+  }, []);
 
   return (
     <div style={{ height: '200px', width: '650px' }}>

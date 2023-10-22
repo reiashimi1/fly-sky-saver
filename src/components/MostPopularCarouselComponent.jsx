@@ -1,10 +1,13 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import CarouselCards from './CarouselCards';
 import WizzAir from '../assets/images/WizzAir.png';
 import AirAlbania from '../assets/images/AirAlbania.svg';
 import Alitalia from '../assets/images/Alitalia.svg';
+import {useDispatch} from "react-redux";
+import {hideSpinner, showSpinner} from "../redux/spinnerSlice.js";
+import API from "../utils/API.js";
 
 const responsive = {
   desktop: {
@@ -25,6 +28,22 @@ const responsive = {
 };
 
 const MostPopularCarouselComponent = () => {
+  const [popularOffers, setPopularOffers] = useState([]);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(showSpinner('Loading data...'));
+    API.get('/users/recommendations/popular')
+        .then((res) => {
+          const { recomendations } = res.data;
+          setPopularOffers(recomendations);
+        })
+        .catch((error) => {
+          console.error(error);
+        })
+        .finally(() => dispatch(hideSpinner()));
+  }, []);
 
   return (
     <div style={{ height: '200px', width: '650px' }}>
