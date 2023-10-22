@@ -41,7 +41,8 @@ function NavBar() {
           </div>
 
           <div className="flex flex-1 space-x-10">
-            <NavItem title="Home" url="/" exact />
+            <NavItem title="Roulette" url="/airline-home" />
+            <NavItem title="Loyalty" url="/airline-loyalty" />
             <NavItem title="Offers" url="/airline-offers" />
             <NavItem title="Rewards" url="/airline-rewards" />
             {/*<NavItem title="Bookings" url="/airline-bookings" />*/}
@@ -86,11 +87,18 @@ function NavBar() {
           <div className="md:hidden" id="mobile-menu">
             <div className="flex flex-col px-2 pt-2 pb-3 space-y-1 sm:px-3 mt-2">
               <Link
-                to="/"
+                to="/airline-home"
                 className={`${
-                  location.pathname === '/' ? 'text-indigo-400 font-bold' : ''
+                  location.pathname === '/airline-home' ? 'text-indigo-400 font-bold' : ''
                 } text-opacity-90 transition duration-200 uppercase text-2xl hover:font-semibold pt-2`}>
-                Home
+                Roulette
+              </Link>
+              <Link
+                to="/airline-loyalty"
+                className={`${
+                  location.pathname === '/airline-home' ? 'text-indigo-400 font-bold' : ''
+                } text-opacity-90 transition duration-200 uppercase text-2xl hover:font-semibold pt-2`}>
+                Loyalty
               </Link>
               <Link
                 to="/airline-offers"

@@ -3,8 +3,6 @@ import Layout from '../layout/airline/Layout.jsx';
 import DataTable from '../core/DataTable.jsx';
 import { hideSpinner, showSpinner } from '../redux/spinnerSlice.js';
 import { useDispatch } from 'react-redux';
-import { login } from '../redux/authSlice.js';
-import { fetchUser } from '../redux/userSlice.js';
 import API from '../utils/API.js';
 import DeleteButton from '../core/DeleteButton.jsx';
 import EditButton from '../core/EditButton.jsx';

@@ -13,6 +13,7 @@ import GuestRoute from './GuestRoute.jsx';
 import UserAuthRoute from './UserAuthRoute.jsx';
 import AirlineAuthRoute from './AirlineAuthRoute.jsx';
 import AirlineRewardsPage from "../pages/AirlineRewardsPage.jsx";
+import AirlineLoyaltyPage from "../pages/AirlineLoyaltyPage.jsx";
 
 const AppRoutes = () => {
   return (
@@ -33,6 +34,7 @@ const AppRoutes = () => {
 
         <Route element={<AirlineAuthRoute />}>
           <Route path="/airline-home" element={<AirlineHomePage />} />
+          <Route path="/airline-loyalty" element={<AirlineLoyaltyPage />} />
           <Route path="/airline-offers" element={<AirlineOffersPage />} />
           <Route path="/airline-rewards" element={<AirlineRewardsPage />} />
           <Route path="/airline-profile" element={<AirlineProfilePage />} />

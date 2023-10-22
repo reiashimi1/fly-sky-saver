@@ -53,15 +53,17 @@ const columns = [
   }
 ];
 
-const AirlineHomePage = () => {
+const AirlineLoyaltyPage = () => {
   const [offers, setOffers] = useState([]);
   const [selectedRows, setSelectedRows] = useState([]);
-  const [eventName, setEventName] = useState('');
+  const [title, setTitle] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
   const [updated, setUpdated] = useState(0);
+  const [threshold, setThreshold] = useState(0);
+  const [description, setDescription] = useState('');
 
   const dispatch = useDispatch();
 
@@ -72,7 +74,15 @@ const AirlineHomePage = () => {
     dispatch(showSpinner('Please wait...'));
     const offerIds = selectedRows.map((row) => row.id);
 
-    API.post('/airline/roulette', { eventName, startDate, endDate, offerIds })
+    API.post('/airline/loyalty-programs', {
+      title,
+      threshold,
+      description,
+      startDate,
+      endDate,
+      offerIds,
+      thresholdType: "points"
+    })
       .then(() => {
         setSuccess(true);
         setSelectedRows([]);
@@ -101,13 +111,46 @@ const AirlineHomePage = () => {
 
   return (
     <Layout>
-      {success && <Alert severity="success">Carousel items created successfully</Alert>}
+      {success && <Alert severity="success">Loayalty Program created successfully</Alert>}
       {error && <Alert severity="error">Please select rewards</Alert>}
       <div className="p-3">
-        <h1 className="font-bold text-xxl text-center py-5" style={{ color: 'purple' }}>
-          Create configuration for roulette
+        <h1 className="font-bold text-xxl text-center pb-5" style={{ color: 'purple' }}>
+          Create configuration for loyalty program
         </h1>
         <div className="bg-white p-5">
+          <div className="flex sm:flex-row flex-col justify-between space-x-4">
+            <div className="w-full mt-1">
+              <div>Title</div>
+              <Input
+                className="w-full mb-4"
+                placeholder="Enter title"
+                value={title}
+                handleInputChange={setTitle}
+              />
+            </div>
+            <div className="w-full mt-1">
+              <div>Threshold</div>
+              <Input
+                className="w-full mb-4"
+                placeholder="Enter threshold"
+                value={threshold}
+                handleInputChange={setThreshold}
+                type="number"
+              />
+            </div>
+          </div>
+          <div className="w-full mt-1 mb-2">
+            <div>Description</div>
+            <textarea
+              className={`${
+                error ? 'focus:ring-red-100 border-red-300' : ''
+              } mr-5 appearance-none relative block px-4 py-2 w-full 
+                 placeholder-gray-500 placeholder:text-sm border text-gray-900 h-12 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-100 sm:text-sm`}
+              placeholder="Enter description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+          </div>
           <div className="flex sm:flex-row flex-col justify-between space-x-4">
             <div className="w-full mt-1">
               <div>Start Date</div>
@@ -130,15 +173,7 @@ const AirlineHomePage = () => {
               />
             </div>
           </div>
-          <div className="flex flex-col items-center justify-center mt-1">
-            <div>Event name</div>
-            <Input
-              className="sm:w-1/3 w-full mb-4"
-              placeholder="Enter event name"
-              value={eventName}
-              handleInputChange={setEventName}
-            />
-          </div>
+          <div className="mt-5 font-semibold text-xl">Rewards</div>
           <DataTable
             rows={offers}
             columns={columns}
@@ -154,4 +189,4 @@ const AirlineHomePage = () => {
   );
 };
 
-export default AirlineHomePage;
+export default AirlineLoyaltyPage;
