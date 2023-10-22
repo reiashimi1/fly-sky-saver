@@ -43,8 +43,9 @@ function NavBar() {
           <div className="flex flex-1 space-x-10">
             <NavItem title="Home" url="/" exact />
             <NavItem title="Offers" url="/airline-offers" />
+            <NavItem title="Rewards" url="/airline-rewards" />
             {/*<NavItem title="Bookings" url="/airline-bookings" />*/}
-            <NavItem title="Profile" url="/airline-profile" />
+            {/*<NavItem title="Profile" url="/airline-profile" />*/}
           </div>
           <p
             className="text-red-400 hover:text-white block px-3 rounded-md font-medium cursor-pointer"
@@ -96,17 +97,23 @@ function NavBar() {
                 className={`${
                   location.pathname === '/' ? 'text-indigo-400 font-bold' : ''
                 } text-opacity-90 transition duration-200 uppercase text-2xl hover:font-semibold pt-2`}>
-                {' '}
                 Offers
               </Link>
-
               <Link
-                to="/airline-bookings"
+                to="/airline-rewards"
                 className={`${
                   location.pathname === '/' ? 'text-indigo-400 font-bold' : ''
                 } text-opacity-90 transition duration-200 uppercase text-2xl hover:font-semibold pt-2`}>
-                Bookings
+                Rewards
               </Link>
+
+              {/*<Link*/}
+              {/*  to="/airline-bookings"*/}
+              {/*  className={`${*/}
+              {/*    location.pathname === '/' ? 'text-indigo-400 font-bold' : ''*/}
+              {/*  } text-opacity-90 transition duration-200 uppercase text-2xl hover:font-semibold pt-2`}>*/}
+              {/*  Bookings*/}
+              {/*</Link>*/}
               {/*<Link*/}
               {/*  to="/airline-profile"*/}
               {/*  className={`${*/}
