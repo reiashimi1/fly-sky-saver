@@ -28,13 +28,11 @@ const AddOffer = ({ openModal, setOpenModal, onSuccess }) => {
   const { clearError, getError, validateErrors } = useValidate();
 
   const addOffer = () => {
-    const fields = { title, description, origin, destination, type: type.value, discount: discount/100, startDate, endDate };
+    const fields = { title, description, origin, destination, type: type.value, discount: discount/100, startDate, endDate, imageUrl };
     // const errors = validateErrors(fields, loginValidator);
     // if (errors) return;
     dispatch(showSpinner('Please wait...'));
-    API.post('/airline/offers', {
-      ...fields, imageUrl
-    })
+    API.post('/airline/offers', fields)
       .then(() => {
         onSuccess();
         setOpenModal(false);
