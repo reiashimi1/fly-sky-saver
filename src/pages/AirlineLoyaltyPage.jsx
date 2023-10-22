@@ -80,7 +80,7 @@ const AirlineLoyaltyPage = () => {
       description,
       startDate,
       endDate,
-      offerIds,
+      offerIds: [offerIds[0]],
       thresholdType: "points"
     })
       .then(() => {
