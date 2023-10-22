@@ -34,8 +34,8 @@ const OfferAnnouncements = () => {
     dispatch(showSpinner('Loading data...'));
     API.get('/users/recommendations/personalized')
       .then((res) => {
-        const { recomendations } = res.data;
-        setRecommendations(recomendations);
+        const { articles } = res.data;
+        setRecommendations(articles);
       })
       .catch((error) => {
         console.error(error);

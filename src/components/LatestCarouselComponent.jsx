@@ -8,6 +8,7 @@ import Alitalia from '../assets/images/Alitalia.svg';
 import { useDispatch } from 'react-redux';
 import { hideSpinner, showSpinner } from '../redux/spinnerSlice.js';
 import API from '../utils/API.js';
+import { dateFormatter } from '../utils/helpers.js';
 
 const responsive = {
   desktop: {
@@ -36,8 +37,8 @@ const LatestCarouselComponent = () => {
     dispatch(showSpinner('Loading data...'));
     API.get('/users/recommendations/latest')
       .then((res) => {
-        const { recomendations } = res.data;
-        setLatestOffers(recomendations);
+        const { articles } = res.data;
+        setLatestOffers(articles);
       })
       .catch((error) => {
         console.error(error);
@@ -59,34 +60,44 @@ const LatestCarouselComponent = () => {
         infinite={true}
         partialVisible={false}
         dotListClass="custom-dot-list-style">
-        <CarouselCards
-          imageSrc={WizzAir}
-          date="3 shkurt "
-          title="Latest Wizz news"
-          description="CHECK OUT HERE THE LATEST NEWS FROM WIZZAIR"
-          onClick={() => console.log('testing')}
-        />
-        <CarouselCards
-          imageSrc={AirAlbania}
-          date="3 shkurt "
-          title="Latest Wizz news"
-          description="CHECK OUT HERE THE LATEST NEWS FROM WIZZAIR"
-          onClick={() => console.log('testing')}
-        />
-        <CarouselCards
-          imageSrc={Alitalia}
-          date="3 shkurt "
-          title="Latest Wizz news"
-          description="CHECK OUT HERE THE LATEST NEWS FROM WIZZAIR"
-          onClick={() => console.log('testing')}
-        />
-        <CarouselCards
-          imageSrc={Alitalia}
-          date="3 shkurt "
-          title="Latest Wizz news"
-          description="CHECK OUT HERE THE LATEST NEWS FROM WIZZAIR"
-          onClick={() => console.log('testing')}
-        />
+        {latestOffers.map((latestOffer) => (
+          <CarouselCards
+            key={latestOffer.id}
+            imageSrc={latestOffer.imageUrl}
+            date={dateFormatter(latestOffer?.createdAt)}
+            title={latestOffer.title}
+            description={latestOffer.description}
+            onClick={() => console.log('testing')}
+          />
+        ))}
+        {/*<CarouselCards*/}
+        {/*  imageSrc={WizzAir}*/}
+        {/*  date="3 shkurt "*/}
+        {/*  title="Latest Wizz news"*/}
+        {/*  description="CHECK OUT HERE THE LATEST NEWS FROM WIZZAIR"*/}
+        {/*  onClick={() => console.log('testing')}*/}
+        {/*/>*/}
+        {/*<CarouselCards*/}
+        {/*  imageSrc={AirAlbania}*/}
+        {/*  date="3 shkurt "*/}
+        {/*  title="Latest Wizz news"*/}
+        {/*  description="CHECK OUT HERE THE LATEST NEWS FROM WIZZAIR"*/}
+        {/*  onClick={() => console.log('testing')}*/}
+        {/*/>*/}
+        {/*<CarouselCards*/}
+        {/*  imageSrc={Alitalia}*/}
+        {/*  date="3 shkurt "*/}
+        {/*  title="Latest Wizz news"*/}
+        {/*  description="CHECK OUT HERE THE LATEST NEWS FROM WIZZAIR"*/}
+        {/*  onClick={() => console.log('testing')}*/}
+        {/*/>*/}
+        {/*<CarouselCards*/}
+        {/*  imageSrc={Alitalia}*/}
+        {/*  date="3 shkurt "*/}
+        {/*  title="Latest Wizz news"*/}
+        {/*  description="CHECK OUT HERE THE LATEST NEWS FROM WIZZAIR"*/}
+        {/*  onClick={() => console.log('testing')}*/}
+        {/*/>*/}
       </Carousel>
     </div>
   );
