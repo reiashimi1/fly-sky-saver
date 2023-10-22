@@ -134,12 +134,12 @@ const UserProfilePage = () => {
         </h1>
         <div className="flex h-full flex-col align-center justify-center w-full">
           <div>
-            <DataTable
-              rows={rows}
-              columns={columns}
-              selectedRows={selectedRows}
-              setSelectedRows={setSelectedRows}
-            />
+            {/*<DataTable*/}
+            {/*  rows={rows}*/}
+            {/*  columns={columns}*/}
+            {/*  selectedRows={selectedRows}*/}
+            {/*  setSelectedRows={setSelectedRows}*/}
+            {/*/>*/}
           </div>
         </div>
       </div>

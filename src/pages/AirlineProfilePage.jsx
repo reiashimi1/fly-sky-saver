@@ -135,13 +135,13 @@ const AirlineProfilePage = () => {
         </h1>
         <div>
           <div className="flex h-full flex-col align-center justify-center mx-5">
-            <DataTable
-              rows={rows}
-              columns={columns}
-              selectedRows={selectedRows}
-              setSelectedRows={setSelectedRows}
-              allowCheckboxSelection={false}
-            />
+            {/*<DataTable*/}
+            {/*  rows={rows}*/}
+            {/*  columns={columns}*/}
+            {/*  selectedRows={selectedRows}*/}
+            {/*  setSelectedRows={setSelectedRows}*/}
+            {/*  allowCheckboxSelection={false}*/}
+            {/*/>*/}
           </div>
         </div>
       </div>

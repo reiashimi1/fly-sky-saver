@@ -1,10 +1,11 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Line } from 'rc-progress';
 import API from '../utils/API.js';
-import {logout} from "../redux/authSlice.js";
+import { useNavigate } from 'react-router-dom';
 
 const ProgressBar = ({ airlineId }) => {
-  const [loyaltyProgram, setLoyaltyProgram] = useState();
+  const navigate = useNavigate();
+  const [loyaltyProgram, setLoyaltyProgram] = useState('');
 
   useEffect(() => {
     if (airlineId) {
@@ -24,14 +25,25 @@ const ProgressBar = ({ airlineId }) => {
     [loyaltyProgram]
   );
 
+  console.log(percentage);
+
   return (
     <div className="mt-10">
       <div className="font-semibold text-xl">Check your loyalty</div>
       <Line percent={percentage} strokeWidth={4} strokeColor="#026e04" />
-        <p
-            className="flex justify-end text-indigo-800 hover:text-white block px-3 rounded-md font-medium">
+      <div>
+        {percentage >= 100 ? (
+          <p
+            onClick={() => navigate('/offers')}
+            className="flex justify-end text-indigo-800 cursor-pointer block px-3 rounded-md font-medium">
+            Check your offers page!
+          </p>
+        ) : (
+          <p className="flex justify-end text-indigo-800 block px-3 rounded-md font-medium">
             Score: {loyaltyProgram?.score} / {loyaltyProgram?.threshold}
-        </p>
+          </p>
+        )}
+      </div>
     </div>
   );
 };

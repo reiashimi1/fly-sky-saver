@@ -16,6 +16,7 @@ const Roulette = ({ airlineId }) => {
   const [canSpin, setCanSpin] = useState(false);
   const [options, setOptions] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [renderRoulette, setRenderRoulette] = useState(false);
 
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
 
@@ -29,8 +30,15 @@ const Roulette = ({ airlineId }) => {
           const { roulette } = res.data;
           setCanSpin(roulette.canBeClicked);
           setRoulette(roulette);
-          roulette.offers.map((offer) => (offer.option = offer.title));
-          // console.log(formattedOffers); // Check the formatted data
+          if(roulette.offers?.length > 0) {
+            setRenderRoulette(true);
+          } else {
+            setRenderRoulette(false);
+            return ;
+          }
+
+          roulette?.offers.map((offer) => (offer.option = offer.title));
+
           const optionsWithFallback = Array.from(
             { length: 8 },
             (_, index) => roulette.offers[index] || { option: 'Try Again' }
@@ -38,6 +46,7 @@ const Roulette = ({ airlineId }) => {
           setOptions(optionsWithFallback);
         })
         .catch((error) => {
+          setRenderRoulette(false);
           console.error(error);
         })
         .finally(() => setIsLoading(false));
@@ -63,13 +72,13 @@ const Roulette = ({ airlineId }) => {
   }, [screenSize]);
 
   const handleSpinClick = () => {
+    console.log('nr', prizeNumber);
     API.get(`/users/roulette/${roulette.id}/spin`)
       .then(() => {
         setLoadConfetti(false);
         if (!mustSpin) {
-          const newPrizeNumber = Math.floor(Math.random() * options.length);
+          const newPrizeNumber = Math.floor(Math.random() * options?.length);
           setPrizeNumber(newPrizeNumber);
-          console.log('nr', newPrizeNumber);
           const winner = options[newPrizeNumber];
           setMustSpin(true);
           if (winner.option !== 'Try Again') {
@@ -84,7 +93,7 @@ const Roulette = ({ airlineId }) => {
 
   return (
     <div>
-      {loadConfetti && (
+      {loadConfetti && renderRoulette && (
         <Confetti
           width={screenSize.offsetWidth}
           height={screenSize.offsetHeight}
@@ -97,7 +106,7 @@ const Roulette = ({ airlineId }) => {
         className="mx-auto"
         label="Spin"
         onClick={handleSpinClick}
-        // disabled={!canSpin}
+        //disabled={!canSpin}
       />
       {!isLoading && !isArrayEmpty(options) && (
         <Wheel

@@ -10,7 +10,7 @@ const PrimaryButton = (props) => {
         <Link
           className={`${
             props.sm ? 'text-sm' : 'text-xs'
-          } flex items-center font-medium bg-blue-400 text-white rounded-md py-2 px-4 h-9`}
+          } flex items-center font-medium bg-purple-400 text-white rounded-md py-2 px-4 h-9`}
           to={props.to}>
           {props.label}
         </Link>

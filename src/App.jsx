@@ -12,16 +12,13 @@ import { isArrayEmpty } from './utils/helpers.js';
 
 function App() {
   const [options, setOptions] = useState([]);
-  const [selectedOption, setSelectedOption] = useState();
-
-  const count = useSelector((state) => state.counterSlice.value);
-  const dispatch = useDispatch();
+  const [selectedOption, setSelectedOption] = useState({});
 
   useEffect(() => {
     API.get('/users/airlines')
       .then((res) => {
         const { airlines } = res.data;
-        const formattedOptions = airlines.map((option) => {
+        const formattedOptions = airlines?.map((option) => {
           return { label: option.name, value: option.id };
         });
         setOptions(formattedOptions);

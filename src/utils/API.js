@@ -10,7 +10,8 @@ const API = Axios.create({
   baseURL: API_URL,
   headers: {
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*'
+    'Access-Control-Allow-Origin': '*',
+    // 'ngrok-skip-browser-warning':true
   }
 });
 

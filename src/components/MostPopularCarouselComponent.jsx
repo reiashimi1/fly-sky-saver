@@ -60,7 +60,7 @@ const MostPopularCarouselComponent = () => {
         infinite={true}
         partialVisible={false}
         dotListClass="custom-dot-list-style">
-        {popularOffers.map((popularOffer) => (
+        {popularOffers.length > 0 && popularOffers?.map((popularOffer) => (
           <CarouselCards
               key={popularOffer.id}
             imageSrc={popularOffer.imageUrl}

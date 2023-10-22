@@ -14,6 +14,7 @@ import UserAuthRoute from './UserAuthRoute.jsx';
 import AirlineAuthRoute from './AirlineAuthRoute.jsx';
 import AirlineRewardsPage from "../pages/AirlineRewardsPage.jsx";
 import AirlineLoyaltyPage from "../pages/AirlineLoyaltyPage.jsx";
+import OffersPage from "../pages/OffersPage.jsx";
 
 const AppRoutes = () => {
   return (
@@ -29,6 +30,7 @@ const AppRoutes = () => {
 
         <Route element={<UserAuthRoute />}>
           <Route path="/" element={<App />} />
+          <Route path="/offers" element={<OffersPage />} />
           <Route path="/profile" element={<UserProfilePage />} />
         </Route>
 

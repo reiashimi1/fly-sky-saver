@@ -106,7 +106,7 @@ const AirlineOffersPage = () => {
       {addModal && (
         <AddOffer openModal={addModal} setOpenModal={setAddModal} onSuccess={updateData} />
       )}
-      {editModal && selectedRows.length > 0 && (
+      {editModal && selectedRows?.length > 0 && (
         <EditOffer
           openModal={editModal}
           setOpenModal={setEditModal}
@@ -114,7 +114,7 @@ const AirlineOffersPage = () => {
           onSuccess={updateData}
         />
       )}
-      {removeModal && selectedRows.length > 0 && (
+      {removeModal && selectedRows?.length > 0 && (
         <CancelOffer
           setOpenModal={setRemoveModal}
           onSuccess={updateData}
