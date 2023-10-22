@@ -35,11 +35,11 @@ function App() {
           </div>
         </div>
         <div className="flex flex-col align-items-center justify-content-center pt-10">
-          <SelectInput
-            className="mb-40"
-            style={{ zIndex: '3' }}
-            selectedOptionState={[selectedOption, setSelectedOption]}
-          />
+          {/*<SelectInput*/}
+          {/*  className="mb-40"*/}
+          {/*  style={{ zIndex: '3' }}*/}
+          {/*  selectedOptionState={[selectedOption, setSelectedOption]}*/}
+          {/*/>*/}
           <Roulette />
         </div>
       </div>

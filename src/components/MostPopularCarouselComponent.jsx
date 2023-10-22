@@ -6,24 +6,25 @@ import WizzAir from '../assets/images/WizzAir.png';
 import AirAlbania from '../assets/images/AirAlbania.svg';
 import Alitalia from '../assets/images/Alitalia.svg';
 
+const responsive = {
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 3,
+    slidesToSlide: 3 // optional, default to 1.
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 768 },
+    items: 3,
+    slidesToSlide: 3 // optional, default to 1.
+  },
+  mobile: {
+    breakpoint: { max: 767, min: 464 },
+    items: 2,
+    slidesToSlide: 1 // optional, default to 1.
+  }
+};
+
 const MostPopularCarouselComponent = () => {
-  const responsive = {
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 3,
-      slidesToSlide: 3 // optional, default to 1.
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 768 },
-      items: 3,
-      slidesToSlide: 3 // optional, default to 1.
-    },
-    mobile: {
-      breakpoint: { max: 767, min: 464 },
-      items: 2,
-      slidesToSlide: 1 // optional, default to 1.
-    }
-  };
 
   return (
     <div style={{ height: '200px', width: '650px' }}>
