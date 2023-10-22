@@ -1,4 +1,4 @@
-import { FormEventHandler, useState } from 'react';
+import React, { FormEventHandler, useState } from 'react';
 import Input from '../core/Input';
 import PrimaryButton from '../core/PrimaryButton';
 import PasswordInput from '../core/PasswordInput';
@@ -11,10 +11,12 @@ import AuthAPI from '../utils/AuthAPI.js';
 import useValidate from '../hooks/useValidate.js';
 import loginValidator from '../utils/validators/LoginValidator.js';
 import _ from 'lodash';
+import { Alert } from '@mui/material';
 
 const LoginPage = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [error, setError] = useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -41,16 +43,17 @@ const LoginPage = () => {
         if (user?.role === 'user') {
           userName = user.name;
           dispatch(login({ accessToken, userName, userRole }));
-          navigate("/");
+          navigate('/');
         } else {
           userName = user.airline.name;
           dispatch(login({ accessToken, userName, userRole }));
-          navigate("/airline-home")
+          navigate('/airline-home');
         }
         dispatch(login({ accessToken, userName, userRole }));
       })
       .catch((error) => {
         console.error(error);
+        setError(true);
       })
       .finally(() => dispatch(hideSpinner()));
   };
@@ -109,6 +112,7 @@ const LoginPage = () => {
           </div>
         </form>
       </div>
+      {error && <Alert severity="error">Something went wrong</Alert>}
     </div>
   );
 };

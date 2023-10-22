@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Layout from '../layout/airline/Layout';
 import DataTable from '../core/DataTable.jsx';
 import { useSelector } from 'react-redux';
+import _ from 'lodash';
 
 const AirlineProfilePage = () => {
   const columns = [
@@ -124,8 +125,8 @@ const AirlineProfilePage = () => {
   ];
 
   const [selectedRows, setSelectedRows] = useState([]);
-  // const name = useSelector((state) => _.get(state, 'meReducer.name', ''));
-  const name = 'WIZAIR';
+  const name = useSelector((state) => _.get(state, 'authSlice.userName', null));
+
   return (
     <Layout>
       <div className="bg-white m-3">
