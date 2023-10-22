@@ -6,7 +6,7 @@ const PersonalizedCard = ({ offer }) => {
     <div
       key={offer.id}
       className="flex border-2 rounded-lg mt-10"
-      style={{ height: '250px', width: '650px', borderColor: 'lightblue' }}>
+      style={{ height: '250px', width: "850px", borderColor: 'lightblue' }}>
       <div
         className="flex rounded-lg flex-col justify-center align-center"
         style={{ backgroundImage: `url(${offer?.imageUrl})`, width: 'inherit ' }}>

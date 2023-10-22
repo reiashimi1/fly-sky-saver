@@ -44,6 +44,7 @@ const OfferAnnouncements = () => {
   }, []);
 
   return (
+      <div style={{width: "850px"}}>
     <Carousel
       responsive={responsive}
       autoPlay={true}
@@ -57,6 +58,7 @@ const OfferAnnouncements = () => {
         <PersonalizedCard offer={recommendation} />
       ))}
     </Carousel>
+      </div>
   );
 };
 

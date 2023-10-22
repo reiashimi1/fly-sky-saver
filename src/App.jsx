@@ -62,7 +62,7 @@ function App() {
         <div className="flex flex-col align-items-center justify-content-center pt-10 z-9999  ">
           <SelectInput
             placeholder="Select airline"
-            className="mb-40"
+            className="mb-40 mt-10"
             maxHeight={180}
             selectedOptionState={[selectedOption, setSelectedOption]}
             options={options}
